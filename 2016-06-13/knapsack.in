@@ -1,0 +1,10 @@
+9 36
+52 52 52 40 40 17 17 7 8
+15 15 15 13 13  5  5 3 1
+
+FORMATO DEL PRESENTE FILE:
+prima riga:
+              int                    int
+  n = num_oggetti  B = knapsack capacity
+seconda riga: val
+terza  riga:  peso

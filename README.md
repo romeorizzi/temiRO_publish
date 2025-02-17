@@ -1,0 +1,1 @@
+Questo repo offre i testi dei temi e le correzioni per gli esami del corso di Ricerca Operativa in Verona (a partire dal 2012 e con qualche interruzione in epoca CoVid quando abbiamo adottato modalità diverse per l'espletamento dell'esame).

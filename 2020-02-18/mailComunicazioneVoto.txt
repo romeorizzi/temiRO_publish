@@ -1,0 +1,41 @@
+subject: Esiti esame Ricerca Operativa 2020-02-18
+
+Ho ultimato la correzione dei vostri temi di Ricerca Operativa. La cartella con tutti i dati dell'appello (testo, correzione, voti, e comunicazioni) è raggiungibile dal solito sito:
+
+http://profs.sci.univr.it/~rrizzi/classes/RO/index.html
+
+e vi consiglio di prenderne visione, la correzione si concentra principalmente sulle risposte, volendo esemplificare come andrebbero date all'esame, e, su buona parte degli esercizi espone anche come sia possibile ottenerle. Talvolta approfitta dell'esercizio per infilare delle riflessioni o chiarire dei nessi.
+
+Se potete, vi consiglio convintamente di venire a visionare i vostri compiti per comprendere dove avete perso punti. Lo consiglio a tutti, ed a maggior ragione a chi avesse intenzione di rifare l'esame per migliorare il voto. Potreste inoltre accorgervi che mi sono sfuggiti dei punti che vi spettano, o comunque il confronto ed i chiarimenti contestualizzati possono essere molto utili.
+In tutto il prossimo semestre sarà facile trovarmi in dipartimento.
+
+I voti degli elaborati consegnati sono i seguenti:
+
+matricola,esito_appello_2020-02-18,bonus_CMS_AMPL,bonus_correzioni,bonus_progetti,voto-2020-02-18
+VR376834,23,-,-,-,23,
+VR402708,Insufficiente,-,-,-,-,
+VR407282,Insufficiente,-,-,-,-,
+VR408919,22,-,-,-,22,
+VR412321,Insufficiente,-,-,-,-,
+VR422703,21,-,-,-,21,
+VR414747,20,-,-,-,20,
+
+Chi vuole registrare il voto mi manda una mail, altrimenti il voto resta valido fino a prossimo appello in cui lo studente consegna il compito (richiedendo implicitamente una nuova correzione). I punti bonus vengono comunque mantenuti anche a seguito di una consegna.
+Oltre che consegnando ad appelli successivi, un voto in sospeso può essere migliorato contribuendo in qualsiasi modo con la produzione e/o cura di materiali utili al corso (ad esempio programmi per la correzione automatica di eserci analoghi a quelli che trovi nelle correzioni degli appelli, o contribuendo con pacchetti problema tipo CMS, al CMS o all'ecosistema TuringArena che stiamo sviluppando attualmente. Eventuali progetti più cospiqui potranno essere più congruamente riconosciuti entro percorsi di stage o tesi).
+
+CHI INTENDE REGISTRARE IL VOTO MI MANDA UNA MAIL, SPECIFICANDO:
+1. nome, cognome, matricola
+2. che ci si riferisce al corso di Ricerca Operativa (*)
+3. voto da registrare
+4. appello (*), ed eventuali punti da aggiungere e relativi elementi di supporto
+5. eventuali ragioni di URGENZA (tesi,lauree) specificando la deadline ove nota.
+
+Le voci (*) non sono necessarie ove si scriva in reply o inoltrando la presente.
+
+Il consiglio buono per tutti è di venire a visionare il vostro compito per correggere mie eventuali sviste o dimenticanze e per prendere contezza dei meccanismi di correzione, di cosa/come si valuti, della realtà al di là di ogni muro. 
+
+
+Per ogni questione non esitare a contattarmi.
+
+Romeo
+

@@ -1,0 +1,51 @@
+Ho ultimato la correzione dei vostri temi di Ricerca Operativa. La cartella con tutti i dati dell'appello (testo, correzione, voti, e comunicazioni) è raggiungibile dal solito sito:
+
+http://profs.sci.univr.it/~rrizzi/classes/RO/index.html
+
+e vi consiglio di prenderne visione, la correzione fornisce non solo le risposte, ma esemplifica come andrebbero date all'esame, e, su buona parte degli esercizi espone come sia possibile produrre le risposte (eventualmente con riferimento a codici che le hanno prodotte).
+
+Altra cosa che consiglio è di prendere visione del compito da voi elaborato. Serve soprattutto per comprendere dove avete perso punti. Lo consiglio a tutti, ed a maggior ragione a chi avesse intenzione di rifare l'esame per migliorare il voto (e magari potrete accorgervi che su qualche esercizio mi sono sfuggiti dei punti che vi spettano, consentendomi così di recuperari).
+
+Questa volta il processo della presa visione è più complicato:
+chi interessato mi scrive una mail (a romeo.rizzi@univr.it)
+mettendo Alice in CC (alice.raffaele@unitn.it).
+A quel punto Alice risponderà con una scannerizzazione dei fogli del compito in questione, mettendomi in CC.
+Poi, se eventualmente dovesse servire il confronto con me, in prima battuta proporrei di procedere per mail.
+Se solo per vedere il compito in originale, potete andare da Alice (la trovate nell'ufficio 1.69 di Ca' Vignal 2, da giovedì 28 in poi).
+
+
+Politica di registrazione: nella serata di venerdì 29 giugno registrero' tutti i voti per i quali non mi sia arrivata mail con richiesta di rifiutarlo o di tenerlo in sospeso. Posso tenere congelati i voti in sospeso anche per un tempo molto lungo, sostanzialmente la loro scadenza è quando effettuate una nuova consegna ad un qualche appello (il solo presentarsi all'appello non compromette un voto in sospeso). Oltre che consegnando ad appelli successivi, un voto in sospeso può essere migliorato contribuendo in qualsiasi modo con la produzione e/o cura di materiali utili al corso (ad esempio programmi per la correzione automatica di eserci analoghi a quelli che trovi nelle correzioni degli appelli, o contribuendo con pacchetti problema tipo CMS, al CMS o all'ecosistema TuringArena che stiamo sviluppando attualmente. Eventuali progetti più cospiqui entro TuringArena potranno essere più congruamente riconosciuti entro percorsi di stage o tesi).
+
+I voti degli elaborati consegnati sono i seguenti:
+
+matricola,2018-06-18,bonus-esercizi,bonus-correzioni,totale=voto-2018-06-18
+VR390674,26,2,-,28
+VR397201,28,1,-,29
+VR397220,18-,0,-,18
+VR397230,30L,1,-,30L
+VR397288,26,1,-,27
+VR397297,18-,1,-,18
+VR397804,27,1,1,29	
+VR397955,30L,1,-,30L
+VR398723,23,1,-,24
+VR398955,30,1,-,30
+VR399584,23,1,-,24
+VR399660,23,1,-,24
+VR399806,23,1,1,25	
+VR400154,30,1,-,30
+VR400373,19,1,-,20
+VR401715,23,0,-,23
+VR401954,25,0,-,25
+VR402285,18-,1,1,18
+VR402344,23,0,-,23
+VR404538,30,2,-,30
+VR407226,24,0,-,24
+VR417110,23,0,-,23
+
+
+
+Invierò a seguire separata mail ad un paio di voi con situazioni particolari.
+
+Per ogni questione non esitate a contattarmi.
+
+Migliori auguri a tutti per un'ottima estate.

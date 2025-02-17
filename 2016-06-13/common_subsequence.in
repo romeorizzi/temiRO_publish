@@ -1,0 +1,13 @@
+1 1
+AACACTCTTAGCAACAT
+CATACTGACTTCCATA
+12345678901234567890  <-- RULER LINE
+ATTUALMENTE MAX_L = 20, che e' gia' eccessivo! Vediamo di non forare, anzi.
+
+FORMATO DEL PRESENTE FILE:
+prima riga:
+     bool              bool
+ suffixes  max_num_sol_in_t
+seconda riga: s
+terza  riga:  t
+

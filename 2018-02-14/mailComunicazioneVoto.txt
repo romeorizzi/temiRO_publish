@@ -1,0 +1,24 @@
+subject: Esiti esame Ricerca Operativa 14-02-2018
+
+Ho ultimato la correzione dei vostri temi di Ricerca Operativa. La cartella con tutti i dati dell'appello (testo, correzione, voti, e comunicazioni) è raggiungibile dal solito sito:
+
+http://profs.sci.univr.it/~rrizzi/classes/RO/index.html
+
+e vi consiglio di prenderne visione, la correzione fornisce non solo le risposte, ma esemplifica come andrebbero date all'esame, e, su buona parte degli esercizi espone come sia possibile produrre le risposte (eventualmente con riferimento a codici che le hanno prodotte).
+
+Se potete, vi consiglio inoltre di venire a visionare i vostri compiti per comprendere dove avete perso punti, specie se avete intenzione di rifare l'esame per migliorare il vostro voto. Potreste inoltre accorgervi che mi sono sfuggiti dei punti che vi spettano, o comunque il confronto ed i chiarimenti contestualizzati possono essere molto utili.
+Questa settimana mi trovate disponibile presso il mio ufficio fino a venerdi` alle 10:30.
+Poi mi trovate disponibile con una certa continuta` a partire dal primo marzo.
+
+Politica di registrazione: Venerdi` 9 marzo alle 8:00 registrero' tutti i voti per i quali non mi sia arrivata mail con richiesta di rifiutarlo. Se qualcuno ha bisogno che il suo voto venga registrato prima di allora me lo faccia sapere. E fatemi sapere di ogni altra situazione particolare.
+
+I voti degli elaborati consegnati sono i seguenti:
+
+VR375060	24		
+VR387135	27		
+VR393747	19		
+VR382566	22		
+VR378545	21		
+VR369310	24		
+VR386385	27		
+VR084068	Insufficiente

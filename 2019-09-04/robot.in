@@ -1,0 +1,21 @@
+9 10 1
+0  1  1  1  1  1  0  0 -1  6
+2  1  1  0 -1  0 -1  0  0  5
+0 -1  0 -1  0  0  1  1  1  4
+0  0  1  0  0  0  1 -1  0  3
+0  0 -1  1  0  1  2  0  0  1
+0  1  3  1 -1  3 -1  3  0  1
+3 -1  2  1  2  0  0  3  1 -1
+2  1  2  1  2  1  1  1  2  0
+4  4  3  3  2  1  1 -1  0  0
+
+Usage:
+> ./robot < robot.in
+
+formato:
+m n maximize
+scacchiera m x n valori interi con -1 = WALL
+ATTENZIONE: si metta 0 nei due angoli dove robot e casa, poiche` essi vengono nascosti dal testo.
+m = numero righe
+n = numero colonne
+maximize = 1 (true) se cerchiamo cammini di max valore invece che min costo.
