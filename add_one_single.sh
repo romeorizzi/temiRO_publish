@@ -2,7 +2,7 @@
 #!/bin/bash
 set -e
 echo
-echo "Sono lo script che pubblica sul repo temiRO_publish gli esiti di un singolo appello precisato in input (argomento obbligatorio: yyyy-mm-dd)."
+echo "Sono lo script che pubblica sul repo temiRO_publish gli esiti di un singolo appello precisato in input."
 echo
 echo "Usage: $0 DATA_APPELLO"
 echo "Usage: dove DATA_APPELLO è nel formato 20??-??-?? ossia yyyy-mm-dd"
@@ -17,16 +17,19 @@ fi
 DATA_APPELLO="$1"
 if [ -d "$DATA_APPELLO" ]; then
     echo "questo appello è già presente nel repo temiRO_publish!"
-    echo "se vuoi ripetere il suo inserimento devi prima cancella"
-        mkdir $DATA_APPELLO
-        ln -t $DATA_APPELLO $d/*.pdf ;
+    echo "se vuoi ripetere il suo inserimento devi prima rimuovere:"
+    echo "  - il folder $DATA_APPELLO"
+    echo "  - il file temi_all/$DATA_APPELLO-ro-tema.pdf"
+    echo "  - il file corr_all/$DATA_APPELLO-ro-corr.pdf"
     exit 1
 fi    
 mkdir $DATA_APPELLO
 ln -t $DATA_APPELLO ../temi/$DATA_APPELLO/*.pdf
 ln -s -r -t temi_all ../temi/$DATA_APPELLO/$DATA_APPELLO-ro-tema.pdf
 ln -s -r -t corr_all ../temi/$DATA_APPELLO/$DATA_APPELLO-ro-corr.pdf
-git add .
+git add $DATA_APPELLO/**
+git add temi_all/$DATA_APPELLO-ro-tema.pdf
+git add corr_all/$DATA_APPELLO-ro-corr.pdf
 msg="automatic commit from script add_one_single.sh $DATA_APPELLO ($(date +%Y-%m-%d:%Hh:%Mm:%Ss))"
-git commit -m $msg
+git commit -m "$msg"
 git push

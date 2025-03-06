@@ -14,5 +14,5 @@ for f in 20*/*corr.pdf ; do
 done;
 git add .
 msg="automatic commit from script update_archive.sh $(date +%Y-%m-%d:%Hh:%Mm:%Ss)"
-git commit -m $msg
+git commit -m "$msg"
 git push
