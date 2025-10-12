@@ -25,8 +25,8 @@ if [ -d "$DATA_APPELLO" ]; then
 fi    
 mkdir $DATA_APPELLO
 ln -t $DATA_APPELLO ../temi/$DATA_APPELLO/*.pdf
-ln -s -r -t temi_all ../temi/$DATA_APPELLO/$DATA_APPELLO-ro-tema.pdf
-ln -s -r -t corr_all ../temi/$DATA_APPELLO/$DATA_APPELLO-ro-corr.pdf
+ln -s -r -t temi_all $DATA_APPELLO/$DATA_APPELLO-ro-tema.pdf
+ln -s -r -t corr_all $DATA_APPELLO/$DATA_APPELLO-ro-corr.pdf
 git add $DATA_APPELLO/**
 git add temi_all/$DATA_APPELLO-ro-tema.pdf
 git add corr_all/$DATA_APPELLO-ro-corr.pdf
