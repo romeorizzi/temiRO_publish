@@ -1,0 +1,652 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[italian]{babel}
+\usepackage{fullpage}
+\usepackage[utf8]{inputenc}
+\pagenumbering{arabic}
+\usepackage[nointegrals]{wasysym}
+\usepackage{graphicx}
+\usepackage{mathtools,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{tabbing}
+\date{}
+
+
+\begin{document}
+	
+	\section*{Interpretazione economica delle variabili duali}
+	
+	Per molti problemi di Programmazione Lineare (PL)
+        che derivano dalle applicazioni,
+        alle variabili del problema duale possono essere attribuite delle interpretazioni significative e feconde.
+        Questa interpretazione \`e la porta per dare concretezza al problema duale, controparte dialettica ed alter ego intimo del problema originalmente formulato nella veste di problema primale. Importanti sviluppi nell'economia (macroeconomia e teoria dell'equilibrio economico) hanno preso avvio dallo studio di questa intima relazione.\\
+        
+        Anche se si \`e soliti parlare di interpretazione economica delle variabili duali (spesso il titolo di uno dei capitoli entro un libro di PL),
+        in verit\`a l'interpretazione di cui risulti pi\`u opportuno rivestire le variabili duali dipende dal problema formulato e dal suo contesto applicativo.
+        Esistono delle regole meccaniche che consentono di produrre il problema duale di un dato problema di PL, e queste regole non dipendono in alcun modo dal significato rivestito dalle variabili primali.
+        Occorre quindi restituire semantica al problema duale cui si perviene per mera applicazione di queste regole meccaniche. 
+        In generale, una prima indicazione sul modo in cui queste variabili duali dovrebbero essere interpretate viene da un argomento euristico che viene usato occasionalmente in fisica elementare ad è conosciuto come ``analisi dimensionale''.
+        Illustreremo questo modo di procedere su due casi paradigmatici. Il primo parte da un problema primale in forma standard rivestito da un'iterpretazione importante e di ampia valenza. Questo problema costituisce probabilmente il modello di PL p\`u importante nella applicazioni: ``il problema di gestire la produzione massimizzando i profitti''. Il secondo parte da un problema primale in forma duale standard, rivestito da un'interpretazione che costituisce il celebre e rilevante modello noto come ``il problema della dieta''.\\
+
+	\section*{Pianificare la produzione massimizzando i profitti entro il limite delle risorse}
+      
+        In questa sezione trattiamo di un problema primale in forma standard,
+        ossia:
+	
+	\begin{equation}\begin{split}
+	&\text{max}\qquad\qquad\sum_{j=1}^{n}c_jx_j\\
+	&\text{soggetto a} \qquad\begin{split} &\sum_{j=1}^{n}a_{ij}x_j \leq b_i \qquad(i=1,2,\ldots,m)\\
+	&x_j\geq0 \qquad(j=1,2,\ldots,n),\end{split}
+	\end{split} 
+	\end{equation}
+
+        Per procedere con questo esempio e caso paradigmatico
+        promuoviamo il freddo problema matematico a modello
+        rivestendolo della seguente semantica e contestualizzazione.
+        Si veda~(1) come il problema di massimizzare il profitto in una fabbrica (volendo essere pi\`u concreti, anche se non necessario contestualizzare oltre, si pensi ad una fabbrica che produce mobili). Ciascuna variabile primale $x_j$ indica la quantità di $j$-esima tipologia di prodotto (ad esempio scrivanie o sedie) da prodursi, ogni $b_i$ specifica la disponibilità della $i$-esima risorsa (come legno o metallo).
+        Abbiamo concretizzato il problema, ora esso ha un suo sapore specifico.
+ 
+        Possiamo partire ora con l'analisi dimensionale applicandola per meglio afferrare la natura dei vari elementi, prima del problema primale, poi anche quelli del problema in forma duale.
+	Notiamo che ogni $a_{ij}$ è espresso in unità di risorsa $i$ per unità di prodotto $j$ (infatti, ogni $a_{ij}$ è l'ammontare di risorsa $i$ richiesta per realizzare una unità di prodotto $j$) e che ogni $c_j$ è in dollari per unità di prodotto $j$ (infatti, ogni $c_j$ è il profitto {\bf netto} che deriva dalla produzione di un'unità di prodotto $j$). \`E molto opportuna questa accortezza di aver elaborato i dati in modo che i coefficienti $c_j$ si riferiscano ai profitti \emph{netti}. In particolare, anche se delle varie risorse abbiamo a disposizione quantit\`a prefissate come specificate dalle $b_i$, ci\`o non significa che quelle risorse non abbiano un valore di mercato (non a caso la teoria dell'equilibrio economico postula si possa sempre vendere od acquistare un bene al suo valore di mercato) ed i coefficienti $c_j$ devono tener conto dei valori di mercato delle risorse impiegate e sottrarli ai meri realizzi alla vendita.\\
+
+        Il duale di un problema in forma standard come quello sopra
+        \`e il seguente problema in forma duale standard
+        nelle variabili $y_1,y_2,\ldots,y_m$ (una per ogni vincolo del primale.)
+
+        \begin{equation}\begin{split}
+	&\text{min}\qquad\qquad\sum_{i=1}^{m}b_iy_i\\
+	&\text{soggetto a} \qquad\begin{split} &\sum_{i=1}^{m}a_{ij}y_i \geq c_j \qquad(j=1,2,\ldots,n)\\
+	&y_i\geq0 \qquad(i=1,2,\ldots,m),\end{split}
+	\end{split} 
+	\end{equation}
+
+        Il problema duale trova giustificazione come tentativo di produrre degli upper bounds al valore ottimo del primale.
+        Assumiamo il lettore abbia gi\`a fatto conoscenza della teoria della dualit\`a.
+        
+	Nel problema duale, per rendere confrontabili la parte sinistra, $\sum a_{ij}y_i$, e la parte destra $c_j$, dobbiamo esprimere ogni $y_i$ in dollari per unità di risorsa $i$. In questo modo, si è portati a sospettare che ciascun $y_i$ misuri il valore unitario della risorsa $i$-esima. Il teorema esposto più sotto dà corpo e sostanza a questo sospetto.\\
+        
+	\textbf{Teorema.} (degli scarti complementari).
+		Siano $\tilde{x}$ e $\tilde{y}$ rispettivamente una soluzione primale estesa ammissibile e una soluzione duale estesa ammissibile. Allora $\tilde{x}$ ed $\tilde{y}$ sono ottime per i rispettivi problemi se e solo se 
+		\begin{eqnarray*}
+			x_jy_{m+j}=0 & j = 1,\ldots,n \\
+			x_{n+i}y_i=0 & i = 1,\ldots,m
+		\end{eqnarray*}
+		o in termini vettoriali 
+		\begin{equation*}
+		\tilde{x} \bot \tilde{y}
+		\end{equation*}
+\\
+	\textbf{Lemma.} Se (1) ammette almeno una soluzione di base ottima non degenere
+	allora il suo duale ammette un'unica soluzione ottima.\\
+        \textbf{Dimostrazione.}
+           Che il duale ammetta almeno una soluzione ottima segue dal teorema della dualit\`a forte. L'unicit\`a disegue invece dal teorema degli scarti complementari considerando che la non-degenerativit\`a della soluzione primale implica che gli $m$ termini noti nel dizionario as essa associato siano tutti non nulli, imponendo $m$ condizioni indipendenti su $y$. \Square \\
+	\\
+	\\
+	\textbf{Teorema.} Sia x una soluzione di base ottima non degenere di (1), ed y la soluzione ottima del duale. Esiste allora un valore $\epsilon > 0$ tale che: se $|t_i|\leq \epsilon$ per ogni $i=1,2,\ldots,m$, allora il problema  
+		\begin{equation}\begin{split}
+	&\text{max}\qquad\qquad\sum_{j=1}^{n}c_jx_j\\
+	&\text{soggetto a} \qquad\begin{split} &\sum_{j=1}^{n}a_{ij}x_j \leq b_i + t_i \qquad(i=1,2,\ldots,n) \\
+	&x_j\geq0 \qquad(j=1,2,\ldots,n)\end{split}
+	\end{split}\end{equation}
+	ha una soluzione ottima e il suo valore ottimo vale
+	$$z^* + \sum_{i=1}^{m}y^*_it_i$$
+	con $z^*$ valore ottimo di (1) e con $y^*_1,y^*_2,\ldots,y^*_m$ soluzione ottima del corrispondente duale.\\
+	\\
+	\textbf{Dimostrazione.} \textquotedblleft$ \leq $\textquotedblright : Se B è una soluzione di base ottima per (1), tale che $y^*=(c^TB^{-1})^T$ è la soluzione ottima del duale di (1), il valore ottimo è $z^*=c^TB^{-1}b$. \\Per il teorema della dualità forte, $y=(c^TB^{-1})^T$ è una soluzione ammissibile del duale e $by=y^Tb=z^*$ e y è soluzione ammissibile del duale di (2), poichè non sono stati modificati nè gli $a_{ij}$ nè i $c_j$.
+	Il valore della funzione obbiettivo di $y$ nel duale di (2) è $$(b+t)y=by+ty=z^*+\sum_{i=1}^{m}y^*_it_i $$ e per dualità debole ogni soluzione del primale non può avere valore maggiore.\\
+	\textquotedblleft$\geq$\textquotedblright: La soluzione di base di (2) è $x=B^{-1}(b+t)$ e il valore della funzione obbiettivo è $$cx=(c^TB^{-1})(b+t)=c^TB^{-1}b+c^TB^{-1}t=z^*+\sum_{i=1}^{m}y^*_it_i .$$ Quindi, avendo soluzioni ammissibili di (2) e poichè il primale (2) ha lo stesso valore di funzione obbiettivo del corrispondente duale, la soluzione è ottima.
+	\\
+	Il fatto che esista $\epsilon>0$ segue dall'ipotesi di non degeneratività della soluzione di base ottima. \Square \\
+\\ Questo teorema rivela gli effetti di piccole variazioni nei rifornimenti di risorse sul profitto totale netto della fabbrica. Con ogni unità extra di risorsa $i$, il profitto incrementa di $y^*_i$ dollari. 
+	Quindi, $y^*_i$ specifica il massimo ammontare che l'azienda dovrebbe essere disposta a pagare, oltre all'attuale prezzo di scambio, per ogni unità extra di risorsa $i$. Per questo motivo, $y^*_i$ è spesso chiamata \textit{valore marginale} dell'$i$-esima risorsa, l'aggettivo \textquotedblleft marginale" si riferisce alla differenza tra il prezzo di scambio e il valore attuale della risorsa. Un altro termine comune usato per $y^*_i$ è \textit{prezzo ombra} della risorsa $i$-esima.\\
+	
+\section*{Esempio 1}	Per chiarire queste osservazioni, immaginiamo un boscaiolo che ha a disposizione 100 acri di latifoglie. L'abbattimento degli alberi e la rigenerazione dell'area costa \$10 per acre in risorse immediate e porta un profitto successivo di \$50 per acre.
+	In alternativa, si potrebbero abbattere le latifoglie e piantare nell'area dei pini: questo costerebbe \$50 per acre e un ritorno successivo di \$120 per acre. Dunque, il profitto netto risultante dai due trattamenti è di \$40 e \$70 per acre, rispettivamente. Sfortunatamente, il trattamento che porta più profitti non può essere applicato all'intera area dato che solo \$4000 sono disponibili per affrontare i costi immediati. Il problema del boscaiolo è quindi 
+		\begin{equation}\begin{split}
+	&\text{max}\qquad\qquad\ 40x_1+70x_2\\
+	&\text{soggetto a} \qquad
+	\begin{split} 
+	 x_1+x_2&\leq 100\\
+	10x_1+50x_2&\leq 4000\\
+	x_1,x_2&\geq0.
+	\end{split}
+	\end{split}
+	\end{equation}
+	\\
+	La soluzione ottima è $x^*_1=25$ e $x^*_2=75$. Quindi, il boscaiolo dovrebbe disboscare l'intera area, lasciare che 25 acri si rigenerino e piantare i rimanenti 75 acri con dei pini. In accordo con questo programma, l'investimento iniziale di \$4000 porta un profitto netto di \$6250.
+	Evidentemente, il capitale iniziale rappresenta una risorsa importante. Infatti, il boscaiolo potrebbe ricevere il consiglio di incrementare il livello di questa risorsa chiedendo un prestito a breve tempo; il risultante extra profitto potrebbe anche portare un tasso di interesse svantaggioso. Per esempio, sopponiamo che il boscaiolo possa farsi prestare \$100 ora e restituire \$180 in seguito; lo dovrebbe fare? Oppure, potrebbe essere tentato di spostare i suoi \$4000 verso altre aziende. Per esempio, supponiamo che potrebbe investire oggi \$100 e guadagnare \$180, dovrebbe farlo?
+	In accordo con il teorema, la risposta è nascosta nella soluzione ottima \\
+	$y^*_1=32.5, y^*_2=0.75$
+	del problema duale: il boscaiolo dovrebbe  chiedere un prestito se e solo se l'interesse fosse più basso di 75 cent per dollaro e dovrebbe fare piccoli investimenti se e solo se il profitto fosse maggiore di 75 cent per dollaro.
+	Queste affermazioni, le quali validità sono garantite dal teorema, sono facili da giustificare direttamente. Avendo preso in prestito $t$ dollari, il boscaiolo mira a
+			\begin{equation}\begin{split}
+	&\text{max}\qquad\qquad\ 40x_1+70x_2\\
+	&\text{soggetto a} \qquad
+	\begin{split} 
+	x_1+x_2&\leq 100\\
+	10x_1+50x_2&\leq 4000+t\\
+	x_1,x_2&\geq0.
+	\end{split}
+	\end{split}
+	\end{equation}
+	
+	Ogni soluzione ammissibile $x_1, x_2$ di questo problema soddisfa le disuguaglianze
+	\begin{equation}
+	40x_1+70x_2=32.5(x_1+x_2)+0.75(10x_1+50x_2)\leq3250+0.75(4000+t)=6250+0.75t
+	\end{equation}
+	e quindi l'extra profitto non eccederà mai 0.75t. Infatti, se $t\leq1000$, allora il boscaiolo può realizzare un profitto addizionale di $0.75t$ ponendo
+	\begin{equation}
+	x_1=25-0.025t, x_2=75+0.025t.
+	\end{equation}
+	Gli investimenti in altre aziende possono portare a valori negativi di $t$ in (4); come risultato di un tale investimento il profitto netto dall'azienda originale diminuisce. Se $-t$ dollari sono usati per altri investimenti ($-t$ è positivo!) allora, per (5) il profitto dall'azienda che abbatte le latifoglie calerà di $0.75(-t)$ o anche più. Infatti, se $-t\leq3000$, allora il calo può essere limitato a solo $0.75(-t)$ scegliendo $x_1$ e $x_2$ in accordo con (6).
+	Forse dovrebbe essere enfatizzato il fatto che il teorema ha a che fare con piccoli cambiamenti $t_i$ nel livello della risorsa; la sua conclusione può fallire quando i $t_i$ sono grandi. Per esempio, il nostro boscaiolo non può usare prestiti superiori a \$1000 e, potrebbe voler investire tutti i suoi \$4000 in un'altra impresa, oppure ricevere un consiglio sbagliato e chedere solo 75 cents di profitto per ogni dollaro. (Una parte del Teorema può essere usata anche se i $t_i$ sono grandi).
+\\
+
+Ora supponiamo che il boscaiolo abbia una nuova possibilità che prima non era disponibile, abbattere le latifoglie e piantare nell'area delle conifere.
+Per fare una veloce valutazione dell'attività, il boscaiolo potrebbe far ricorso al valore marginale delle sue risorse: \$32.5 per acre di latifoglia e \$0.75 per dollaro di capitale. Se la nuova attività richiede $a$ dollari per acre, allora le risorse consumate da questa attività per acre sono valutate come \$$(32.5+0.75a)$ e quindi vale la pena considerare l'attività se e solo se il suo profitto netto per acre supera questo schema. 
+\\
+
+	\section*{Problema della dieta}
+
+        Come il problema di pianificazione della produzione costituisce l'indiscusso archetipo per l'interpretazione economica di problemi di PL con primale in forma primale standard, cos\`\i\ il problema della dieta costituisce un possibile riferimento per l'interpretazione economica di problemi con primale in forma duale standard.
+
+        Il problema della dieta \`e il seguente:
+        \begin{quote}
+        un allevatore deve preparare una miscela alimentare per il suo bestiame garantendo un apporto di $b_i$ unità per ogni sostanza nutritiva
+ (vitamine, proteine, carboidrati etc.).  Il mercato mette a disposizione degli alimenti, corrispondenti ai mangimi di diverse case produttrici:  ogni unità di alimento $j$ ha un costo $c_j$ e un apporto di $a_{ij}$ unità della sostanza nutritiva $i$.  L’allevatore vuole determinare le
+        quantità di alimenti da acquistare per soddisfare a costo minimo i requisiti di sostanze nutritive.
+        \end{quote}
+        Se abbiamo $n$ alimenti e $m$
+ sostanze nutritive, il problema della dieta,
+ dal punto di vista dell’allevatore, è formulabile con il seguente modello di programmazione lineare.\\
+ Parametri:
+ \begin{itemize}
+ \item $c_j$ costo unitario alimento $j (j=1,\ldots,n)$
+ \item $a_{ij}$ tasso  di  presenza  della  sostanza $i (i= 1,\ldots,m)$  nell’alimento
+ $j$
+ (ad  es.   grammi  per
+ unità di alimento
+ \item $b_j$ fabbisogno minimo sostanza $i$ (ad es. in grammi).
+\end{itemize}
+Variabili decisionali
+\begin{itemize}
+	\item $x_j$ quantità dell'alimento $j$ da acquistare.
+\end{itemize}	
+Modello: 
+\begin{equation}\begin{split}
+&\text{min}\qquad\qquad\sum_{j=1}^{n}c_jx_j \qquad \text{(minimizzazione dei costi)}\\
+&\text{soggetto a} \qquad\begin{split} &\sum_{j=1}^{n}a_{ij}x_j \geq b_i \qquad(i=1,2,\ldots,n)\qquad \text{(soddisfazione dei fabbisogni nutritivi)}\\
+&x_j\geq0 \qquad(j=1,2,\ldots,n)\end{split}
+\end{split}\end{equation}
+
+Introducendo le variabili duali $y_i$ associate ad ogni vincolo per la sostanza nutritiva $i$, il corrispondente problema duale è:
+\begin{equation}\begin{split}
+&\text{max}\qquad\qquad\sum_{i=1}^{m}b_iy_i\\
+&\text{soggetto a} \qquad\begin{split} &\sum_{i=1}^{m}a_{ij}y_i \leq c_j \qquad(j=1,2,\ldots,n) \\
+&x_j\geq0 \qquad(i=1,2,\ldots,m)\end{split}
+\end{split}\end{equation}
+
+Possiamo vedere la funzione obiettivo come la massimizzazione di un profitto derivante
+dalla  vendita  di $b_i$ unità  della  sostanza nutritiva $i$.  Le  variabili  duali $y_i$ rappresentano quindi  il  prezzo  di  vendita  unitario  della  sostanza $i$.  \\
+ Il  problema  duale  può  essere  infatti  interpretato  considerando  un'azienda chimica  che  decide  di  immettere  sul
+mercato i nutrienti puri (proteine,  vitamine,  carboidrati  etc.).   Essa vuole  determinare  il  prezzo  di  vendita
+unitario di ciascun nutriente in modo da massimizzare il suo profitto. \\ La funzione obiettivo del problema duale utilizza i termini noti dei  vincoli  primali:  l’allevatore  acquista  la  quantità  di  sostanza
+$i$ di  cui  necessita,  cioè $b_i$
+unità al prezzo unitario $y_i$.  I vincoli del problema duale esprimono dei criteri di competitività dei prezzi $y_i$, rispetto all’attuale fornitore dell’allevatore:  ad esempio, affinchè
+l’allevatore  decida  di  fornirsi  dal  nuovo  produttore,  è  sufficiente  che  il  costo  sostenuto per  ricostituire  tutti  gli  apporti  nutritivi  di  una  unità  della  miscela
+$j$ a  partire  dalle
+sostanze  acquistate  ($\sum a_{ij}y_i$)  non  sia  maggiore  del  costo  per  ottenere  gli  stessi  apporti acquistando direttamente il prodotto
+$j$ (costo $c_j$).  Se non fossero rispettati questi
+vincoli,  l’allevatore  potrebbe  preferire  continuare  ad  acquistare  i  prodotti  “compositi”.
+\\
+\section*{Esempio 2}
+In un allevamento di polli
+si usano per il mangime
+due tipi
+di cereali,
+A
+e
+B
+. Il mangime
+dev
+e soddisfare
+certi
+requisiti
+nutritivi:
+deve contenere
+almeno
+8 unità
+a di carboidrati,
+15
+unità
+a di proteine
+e 3 unità
+a di vitamine
+per unità
+a di peso.
+Il contenuto
+unitario
+di
+carboidrati,
+proteine
+e vitamine
+ed il costo
+unitario
+di
+A
+e
+B
+sono
+riportati
+nella
+seguente
+tabella
+insieme
+ai requisiti
+minimi
+giornalieri.
+\begin{center}
+\begin{tabular}{l*{3}{c}}
+	
+	& A & B & min. giornaliero \\
+	\midrule
+	carboidrati & 5 & 7 & 8 \\
+	proteine & 4 & 2 & 15 \\
+	vitamine & 2 & 1 & 3 \\
+	costo unitario & 1200 & 750 & \\
+	
+\end{tabular}
+\end{center}
+
+Siano $x_1$ ed $x_2$ rispettivamen
+te il numero
+di unità
+a di cereale
+$A$
+e
+$B$
+impiegate
+nel
+mangime,
+il numero di unità di carboidrati
+presenti nel
+mangime è dato
+da
+$5x_1+7x_2,$
+e poichè il fabbisogno
+minimo
+di carboidrati
+è di 8 unità, deve risultare
+$5x_1+7x_2 \geq 8$; analogamente,
+per le unità di proteine
+deve risultare
+$4x_1
++ 2x_2 \geq
+15$
+e per le unità di
+vitamine
+$2x_1
++
+x_2 \geq 3.$ Ai
+tre
+vincoli
+precedenti si devono
+aggiungere
+le ovvie
+condizioni
+di non
+negatività
+a delle
+variabili,
+$x_1
+; x_2 \geq 0;$ infine
+la funzione
+obiettivo è $1200x_1+ 750x_2.$
+La
+dieta
+di costo
+minimo è data
+dunque
+da
+una
+soluzione
+del
+seguente problema
+di
+PL:
+
+\begin{equation}\begin{split}
+\text{min}\qquad\qquad\ 1200x_1+750x_2\\
+\text{} \qquad
+\begin{split} 
+&65x_1+7x_2\geq 8\\
+&4x_1+2x_2\geq 15\\
+&2x_1+x_2 \geq 3 \\
+&x_1,x_2\geq0.
+\end{split}
+\end{split}
+\end{equation}
+
+Al
+problema
+in esame è \textit{naturalmente}
+associato
+un
+altro
+problema
+che chiameremo
+il
+problema
+del
+venditore di pillole
+per polli: si tratta
+di stabilire
+i prezzi
+di vendita
+di
+pillole
+rispettivamente di carboidrati,
+proteine
+e vitamine
+in modo
+che
+il ricavato
+della
+vendita
+sia
+massimo
+e che i prezzi
+siano
+competitivi,
+ossia
+che l'allevatore
+di polli
+ritenga
+non
+svantaggioso
+acquistare
+le pillole
+invece
+dei
+cereali
+$A$
+e
+$B.$ Supponiamo
+che
+ciascuna
+pillola
+contenga
+un'unità del
+corrispondente elemento nutritivo, e siano
+$y_1$; $y_2$ e $y_3$
+i prezzi
+rispettivamente di una
+pillola
+di carboidrati,
+proteine
+e vitamine:
+poichè l'allevatore
+deve
+percepire
+la dieta
+a base
+di pillole
+non
+più costosa
+della
+dieta
+a base
+di cereali
+dovrà
+risultare
+$5y_1
++ 4y_2
++ 2y_3 \leq
+1200$,
+cioè  il costo
+dell'equivalente (da
+un
+punto
+di vista
+nutritivo) in pillole
+del
+cereale
+A
+deve essere
+non
+superiore
+a 1200
+euro.
+Analogamente,
+per
+il cereale
+B
+si ottiene
+$7y_1
++ 2y_2
++
+y_3
+\leq
+750.$
+I prezzi
+di vendita
+dev
+ono
+essere
+non
+negativi
+ed
+il ricavato
+della
+vendita
+è dato
+$8y_1 + 15y_2 + 3y_3$
+(dato
+che
+8, 15
+e 3 sono
+il minimo
+numero
+di pillole
+di carboidrati,
+proteine
+e vitamine
+necessari
+alla
+corretta alimentazione
+del
+pollo):
+il problema
+del
+venditore
+di pillole
+per polli è dunque
+
+\begin{equation}\begin{split}
+\text{max}\qquad\qquad\ 8y_1+15y_2+3y_3\\
+\text{} \qquad
+\begin{split} 
+&5y_1+4y_2+2y_3\leq 1200\\
+&7y_1+2y_2+y_3\leq 750\\
+&y_1,y_2,y_3\geq0.
+\end{split}
+\end{split}
+\end{equation}
+
+I due problemi sono riassunti nella seguente tabella
+
+\begin{center}
+	
+\begin{tabular}{l*{4}{c}}
+	
+	& $x_1$ & $x_2$ & & max \\
+	$y_1$ & 5 & 7 & & 8  \\
+	$y_2$ & 4 & 2 & $\geq$ & 15 \\
+	$y_3$ & 2 & 1 & & 3 \\
+	& $\leq$ \\
+	min & 1200 & 750 &&
+	
+\end{tabular}
+\end{center}
+
+La
+coppia
+di problemi
+appena
+costruita
+gode
+di un'importante proprietà:  comunque
+si scelgano
+i prezzi
+$y_1$
+,
+$y_2$
+e
+$y_3$
+delle
+pillole,
+il ricavo del
+venditore
+di pillole
+è sicuramente
+minore
+o  uguale
+al  costo
+di
+qualsiasi
+dieta
+ammissibile
+che
+l'allevatore
+di polli
+possa
+ottenere
+dai
+due
+mangimi.
+Infatti,
+i vincoli
+del
+venditore
+di pillole
+assicurano
+che le pillole
+siano
+più convenienti dei
+singoli
+mangimi,
+e quindi
+anche
+di ogni
+loro
+combinazione.
+La
+proprietà può essere
+vericata
+algebricamente nel
+seguente modo:
+moltiplicando
+per
+$x_1$
+e
+$x_2$
+i due
+vincoli
+del
+problema
+del
+venditore
+di pillole
+e sommando
+le due
+diseguaglianze
+così ottenute,
+si ha 
+$$x_1(5y_1+4y_2+2y_3)+x_2(7y_1+2y_2+y_3) \leq 1200x_1+750x_2$$
+
+Riordinando
+i termini
+in mo
+do
+da
+mattere
+in evidenza
+le variabili
+$y_i$, si ottiene
+
+$$ y_1(5x_1+7x_2)+y_2(4x_1+2x_2)+y_3(2x_1+x_2) \leq 1200x_1+750x_2.$$
+A questo
+punto
+possiamo
+utilizzare
+i vincoli
+del
+problema
+della
+dieta
+per minorare
+le
+quantità tra
+parentesi,
+ottenendo
+
+$$8y_1+15y_2+3y_3 \leq 1200x_1+750x_2.$$
+
+Il costo
+di qualsiasi
+dieta
+ammissibile
+fornisce
+quindi
+una
+valutazione
+superiore
+del
+massimo
+ricavo del
+venditore
+di pillole
+e analogamente qualsiasi
+ricavo ammissibile
+per il venditore
+di pillole
+fornisce
+una
+valutazione
+inferiore
+del
+costo
+della
+miglior
+dieta
+possibile.
+Ciascuno
+dei
+due
+problemi
+fornisce
+quindi,
+attra
+verso
+il costo
+di qualsiasi
+soluzione
+ammissibile,
+una
+valutazione
+(inferiore
+o superiore)
+del
+valore
+ottimo
+dell'altro
+problema.
+\\
+\\
+Come abbiamo visto, la formulazione del problema duale, ci permette di considerare lo
+stesso problema dell’approvvigionamento delle sostanze necessarie all’allevatore dal punto
+di vista alternativo (duale) di un produttore interessato ad agire come venditore (e non
+come acquirente) nello stesso mercato.\\
+\\
+Spesso, i modelli di economia cadono nel regno della programmazione lineare. In particolare, molti teoremi riguardo l'equilibrio economico possono essere dedotti dal Teorema della Dualità e dal Teorema degli Scarti Complementari. 
+
+\end{document}

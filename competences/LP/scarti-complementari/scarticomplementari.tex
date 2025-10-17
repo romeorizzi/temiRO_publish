@@ -1,0 +1,230 @@
+\documentclass{article}[10pt]
+
+\textwidth 15.5cm
+\textheight 21.5cm
+\topmargin 0cm
+\evensidemargin 0in
+\oddsidemargin 0in
+
+\title{Scarti complementari}
+\author{Fabio Cassini, Romeo Rizzi}
+
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsthm,amssymb}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Teorema}[section]
+
+\theoremstyle{definition}
+\newtheorem{definizione}{Definizione}[section]
+
+\theoremstyle{definition}
+\newtheorem{lemma}{Lemma}[section]
+
+\theoremstyle{definition}
+\newtheorem{corollario}{Corollario}[section]
+
+\begin{document}
+	\maketitle
+	A volte risulta utile o necessario recuperare una soluzione duale ottima quando si ha a disposizione soltanto una soluzione primale ottima: in queste circostanze possiamo avvalerci della teoria degli \emph{scarti complementari}.
+	
+	Supponiamo di avere a disposizione un problema di programmazione lineare in forma standard:
+	\[
+	\begin{array}{l}
+	\max \mbox{\ }\sum_{j=1}^{n}c_jx_j\\
+	\left\{
+	\begin{array}{l}
+	\begin{array}{rr}
+	\sum_{j=1}^{n}a_{ij}x_j \;\leq & b_i \\
+	\end{array} \\
+	x_j  \geq 0    
+	\end{array}
+	\right.
+	\end{array}
+	\]
+	e consideriamo il suo duale associato:
+	\[
+	\begin{array}{l}
+	\min \mbox{\ }\sum_{i=1}^{m}b_iy_i\\
+	\left\{
+	\begin{array}{l}
+	\begin{array}{rr}
+	\sum_{i=1}^{m}a_{ij}y_i \;\geq & c_j \\
+	\end{array} \\
+	y_i  \geq 0    
+	\end{array}
+	\right.
+	\end{array}
+	\]	
+	
+	Introduciamo anche le variabili di slack (una per ogni vincolo) sia per il primale che per il duale, ovvero:
+	\begin{eqnarray}
+	x_{n+i}=b_i-\sum_{j=1}^{n}a_{ij}x_j, & x_{n+i}\geq 0, & i=1,\ldots,m \label{pr} \\
+	y_{m+j}=\sum_{i=1}^{m}a_{ij}y_i - c_j, & y_{n+j} \geq 0, & j=1,\ldots,n \label{sc}
+	\end{eqnarray}
+	
+	Osserviamo innanzitutto che vale il seguente risultato:
+	\begin{lemma} \label{chain}
+	Siano $(x_1,\ldots,x_n)$ una soluzione primale, $(y_1,\ldots,y_m)$ una soluzione duale e si considerino le variabili di slack come definite in (\ref{pr}) e (\ref{sc}). Allora vale
+		\begin{equation*}
+			\sum_{j=1}^{n}c_jx_j = \sum_{i=1}^{m}b_iy_i - \left(\sum_{i=1}^{m}x_{n+i}y_i + \sum_{j=1}^{n}y_{m+j}x_j\right)
+		\end{equation*}
+	\end{lemma}
+	\begin{proof}
+	\begin{eqnarray*}
+		\sum_{j=1}^{n}c_jx_j & = & \sum_{j=1}^{n}\left(\sum_{i=1}^{m}a_{ij}y_i - y_{m+j}\right)x_j \\
+		& = & \sum_{j=1}^{n}\sum_{i=1}^{m}a_{ij}y_ix_j - \sum_{j=1}^{n}y_{m+j}x_j \\
+		& = & \sum_{i=1}^{m}\left(\sum_{j=1}^{n}a_{ij}x_j\right)y_i - \sum_{j=1}^{n}y_{m+j}x_j \\
+		& = & \sum_{i=1}^{m}b_iy_i - \left(\sum_{i=1}^{m}x_{n+i}y_i + \sum_{j=1}^{n}y_{m+j}x_j\right)
+	\end{eqnarray*}
+	\end{proof}
+	 
+	 Il problema duale viene introdotto proprio per produrre degli upper-bound sul valore della funzione obiettivo
+         validi su tutte le soluzioni ammissibili del problema primale.
+         In questo senso, il contenuto del seguente teorema non dovrebbe sorprendere,
+         tuttavia esso viene tipicamente enunciato e dimostrato algebricamente in considerazione della sua importanza.
+         Invece che ometterne la classica dimostrazione,
+         evidenziamo come esso dipenda dal Lemma~\ref{chain}. 
+         
+	\begin{theorem}[Teorema della dualità debole] \label{thmd}
+		Se $(x_1,\ldots,x_n)$ è una soluzione ammissibile per il primale e $(y_1,\ldots,y_m)$  è una soluzione ammissibile per il duale, allora vale
+		\begin{equation*}
+		\sum_{j=1}^{n}c_jx_j \leq \sum_{i=1}^{m}b_iy_i
+		\end{equation*}
+	\end{theorem}
+	\begin{proof}
+		Dai vincoli di non negatività delle variabili in gioco discende direttamente che 
+		\begin{equation*}
+		\sum_{i=1}^{m}x_{n+i}y_i + \sum_{j=1}^{n}y_{m+j}x_j \geq 0
+		\end{equation*}
+		da cui, grazie al Lemma~\ref{chain}, l'enunciato.
+	\end{proof}
+	
+	Ancor pi\`u che dal Teorema~\ref{thmd},
+        un ruolo speciale \`e spesso giocato da una sua immediata conseguenza:
+	
+	\begin{corollario} \label{cor}
+		Siano $(\hat{x}_1,\ldots,\hat{x}_n)$ una soluzione primale ammissibile e $(\hat{y}_1,\ldots,\hat{y}_m)$ una soluzione duale ammissibile tali per cui
+		\begin{equation*}
+			\sum_{j=1}^{n}c_j\hat{x}_j = \sum_{i=1}^{m}b_i\hat{y}_i.
+		\end{equation*}
+		Allora entrambe le soluzioni sono ottime per i rispettivi problemi.
+	\end{corollario}
+	\begin{proof}
+		Per quanto riguarda il problema primale, sia $(x_1,\ldots,x_n)$ una sua qualsiasi altra soluzione ammissibile. Per il Teorema~\ref{thmd} si ha che
+		\begin{equation*}
+		\sum_{j=1}^{n}c_jx_j \leq \sum_{i=1}^{m}b_i\hat{y}_i = \sum_{j=1}^{n}c_j\hat{x}_j.
+		\end{equation*}	
+		Data l'arbitrarietà di $(x_1,\ldots,x_n)$ e l'ipotesi di ammissibilità di $(\hat{x}_1,\ldots,\hat{x}_n)$, quest'ultima risulta essere la soluzione ottima. In maniera analoga si procede per il problema duale.	
+	\end{proof}
+
+        Il risultato principale della \emph{teoria della dualit\`a} \`e tuttavia il seguente.
+	 \begin{theorem}[Teorema della dualità forte] \label{thmf}
+	 	Se il problema primale ha soluzione ottima $\hat{x}$ allora anche il problema duale ha soluzione ottima $\hat{y}$ e vale
+	 	\begin{equation*}
+	 	c^\mathrm{T}\hat{x}=b^\mathrm{T}\hat{y}
+	 	\end{equation*} 
+	 \end{theorem}
+
+	
+	Avendo introdotto le variabili di slack, risulta agevole presentare un concetto più ampio di soluzione del problema primale/duale: la soluzione estesa.
+	
+	\begin{definizione}[Soluzione estesa]
+	  Siano $(x_1,\ldots,x_n)$ una soluzione primale, $(y_1,\ldots,y_m)$ una soluzione duale e si considerino le rispettive variabili di slack come definite in (\ref{pr}) e (\ref{sc}). Allora si dice \emph{soluzione primale estesa} il vettore  di $n+m$ componenti $\tilde{x}=(x_1,\ldots,x_n,x_{n+1},\ldots,x_{n+m})$ e \emph{soluzione duale estesa} il vettore di $m+n$ componenti $\tilde{y}=(y_{m+1},\ldots,y_{m+n},y_1,\ldots,y_m)$.\\
+          Si noti come la definizione di soluzione estesa differisca nei casi primale e duale, dove nel secondo caso le $n$ variabili di slack vanno anteposte alle $m$ variabili duali originali, quelle in corrispondenza biunivoca con gli $m$ vincoli nella forma standard del problema primale.
+          Si adotta questa asimmetria perch\`e ha un valore adottare un ordinamento che rispetti la naturale corrispondenza biunivoca tra le variabili: per $i=1,\ldots, n$, all'$i$-esimo vincolo del problema primale sono associate la $i$-esima variabile di slack e la $i$-esima variabile duale (introdotta come moltiplicatore di detto vincolo);
+          per $j=1,\ldots, m$, al $j$-esimo vincolo del problema duale sono associate la $j$-esima variabile di slack del duale e la $j$-esima variabile del primele (il primale pu\`o sempre essere visto come il duale del duale).
+          
+	\end{definizione}	
+	
+	L'idea alla base del prossimo teorema è che sussista una sorta di ortogonalità tra le soluzioni primali e duali estese: prima di procedere è però necessario fare alcune considerazioni preliminari. La verifica algebrica dell'ortogonalità di due vettori viene effettuata, in generale, attraverso il calcolo del loro prodotto scalare, il quale deve essere nullo: in questo caso, però, è necessario preliminarmente riordinare le componenti dei vettori. In particolare l'ordine corretto, esibendo esplicitamente anche la corrispondenza biunivoca, è il seguente:
+
+	\begin{tabular}{rccccccccccccr}
+		$\tilde{x} \rightarrow $ & $($ &     $x_1$    &, \ldots , &     $x_j$    &, \ldots , &      $x_n$   & , &   $x_{n+1}$ & , \ldots , &   $x_{n+i}$ & , \ldots , & $x_{n+m}$ & ) \\
+		                         &     &$\updownarrow$&           &$\updownarrow$&           &$\updownarrow$& , &$\updownarrow$&           &$\updownarrow$&           &$\updownarrow$&   \\
+		$\tilde{y} \rightarrow $ & $($ &   $y_{m+1}$   &, \ldots , &   $y_{m+j}$   &, \ldots , &     $y_{m+n}$ & , &    $y_1$   & , \ldots , &    $y_i$   & , \ldots , &   $y_m$  & )
+	\end{tabular}
+
+	in modo che, quando si effettua il prodotto scalare, si moltiplichino le $n$ variabili primali con le rispettive $n$ variabili di slack duali e le $m$ variabili di slack primali con le rispettivi $m$ variabili duali. Dunque, quando si utilizzerà in seguito il simbolo di ortogonalità $\bot$, si supporrà di aver prima riordinato correttamente i vettori in gioco. 
+	
+	A questo punto siamo pronti per enunciare e dimostrare il seguente fondamentale teorema.
+	
+	\begin{theorem}[Teorema degli scarti complementari]
+		Siano $\tilde{x}$ e $\tilde{y}$ rispettivamente una soluzione primale estesa ammissibile e una soluzione duale estesa ammissibile. Allora $\tilde{x}$ ed $\tilde{y}$ sono ottime per i rispettivi problemi se e solo se 
+		\begin{eqnarray*}
+		x_jy_{m+j}=0 & j = 1,\ldots,n \\
+		x_{n+i}y_i=0 & i = 1,\ldots,m
+		\end{eqnarray*}
+		o in termini vettoriali 
+		\begin{equation*}
+		\tilde{x} \bot \tilde{y}
+		\end{equation*}
+	\end{theorem}
+	\begin{proof}
+		Per dimostrare il teorema, mostriamo prima che vale ``$\Leftarrow$'' e poi che vale ``$\Rightarrow$''.
+		\begin{itemize}
+			\item Se $\tilde{x} \bot \tilde{y}$ allora $\sum_{j=1}^{n}x_jy_{m+j} + \sum_{i=1}^{m}x_{n+i}y_i = 0$ e pertanto dal Lemma~\ref{chain} otteniamo $\sum_{i=1}^{m}b_iy_i = \sum_{j=1}^{n}c_jx_j$. Dunque, per il Corollario~\ref{cor}, $\tilde{x}$ ed $\tilde{y}$ sono ottime per i rispettivi problemi;
+			\item Se $\tilde{x}$ ed $\tilde{y}$ sono ottime per i rispettivi problemi allora per il Teorema~\ref{thmf} i loro valori coincidono, ossia $\sum_{j=1}^{n}c_jx_j = \sum_{i=1}^{m}b_iy_i$. Dunque, per il Lemma~\ref{chain}, si ha che $\sum_{j=1}^{n}x_jy_{m+j} + \sum_{i=1}^{m}x_{n+i}y_i = 0$, ovvero $\tilde{x} \bot \tilde{y}$.
+		\end{itemize}
+	\end{proof}
+	
+	\section{Scarti complementari e analisi di sensitività}
+	Supponiamo ora di voler massimizzare una funzione obiettivo che rappresenti un profitto o qualche altra forma di beneficio. I vincoli descriveranno limitazioni in materie prime o disponibilità.
+	
+	Grazie agli scarti complementari è possibile dimostrare anche il seguente
+	\begin{lemma}
+		Sia $\mathcal{P}$ il problema primale e $\hat{x}$ una sua soluzione ottima di base non degenere. Sia $\hat{y}$ la soluzione ottima del suo problema duale. Sia $\mathcal{P}(t)$ il problema primale modificato per le availability, ovvero:
+		\[
+		\begin{array}{l}
+		\max \mbox{\ }\sum_{j=1}^{n}c_jx_j\\
+		\left\{
+		\begin{array}{l}
+		\begin{array}{rr}
+		\sum_{j=1}^{n}a_{ij}x_j \;\leq & b_i + t_i \\
+		\end{array} \\
+		x_j  \geq 0    
+		\end{array}
+		\right.
+		\end{array}
+		\]		
+		e sia $x^*$ una sua soluzione ottima. Allora $\exists \epsilon > 0$ tale che
+		\begin{equation} \label{opt}
+		\sum_{j=1}^{n}c_jx_j^*=\sum_{j=1}^{n}c_j\hat{x}_j + \sum_{i=1}^{m}\hat{y}_it_i \qquad \forall{}t\in\mathbb{R}^m, \lVert t\rVert\leq \epsilon
+		\end{equation}
+	\end{lemma}
+	\begin{proof}
+		Per mostrare che vale l'uguaglianza (\ref{opt}), vediamo che valgono le due disuguaglianze $\leq$ e $\geq$.
+		\begin{description}
+		\item[Dimostriamo $\leq$\,:]
+                  La diseguaglianza $\leq$ disegue dal teorema della dualit\`a debole, considerato che la soluzione $\hat{y}$ del duale di $\mathcal{P}(0)$ resta ammissibile
+                  per il duale di $\mathcal{P}(t)\, \forall t$, ed il suo valore in termini di funzione obiettivo è dato proprio dal termine destro dell'Equazione~(3) in quanto ottenuto componento le nuove availabilities tramite i moltiplicatori $\hat{y}$.
+                  Volendo esplicitare in lungo questo argomento osserveremo che,
+                  per la generica soluzione ammissibile $x$ di $\mathcal{P}(t)$, deve valere:
+			\begin{equation*}
+			\sum_{j=1}^{n}a_{ij}x_j \leq b_i + t_i \qquad \forall i
+			\end{equation*}
+			D'altra parte, moltiplicando ambo i membri per $\hat{y}_i$ e sommando su $i$ si ottiene:
+			\begin{equation*}
+			\sum_{i=1}^{m}\hat{y}_i\left(\sum_{j=1}^{n}a_{ij}x_j\right) \leq \sum_{i=1}^{m}\hat{y}_i\left(b_i + t_i\right)
+			\end{equation*}
+			Sviluppando si ha:
+			\begin{equation*}
+			\sum_{j=1}^{n}\left(\sum_{i=1}^{m}\hat{y}_ia_{ij}\right)x_j  \leq  \sum_{i=1}^{m}\hat{y}_ib_i + \sum_{i=1}^{m}\hat{y}_it_i = \sum_{j=1}^{n}c_j\hat{x}_j + \sum_{i=1}^{m}\hat{y}_it_i
+			\end{equation*}
+			dove l'ultima uguaglianza si ha grazie al Teorema~\ref{thmf}. Sappiamo però anche che
+			\begin{equation*}
+			\sum_{j=1}^{n}\left(\sum_{i=1}^{m}\hat{y}_ia_{ij}\right)x_j \geq \sum_{j=1}^{n}c_jx_j
+			\end{equation*}
+			poichè ogni $x_j$ è non negativo e $\sum_{i=1}^{m}a_{ij}\hat{y}_i \geq c_j$ per ogni $j$. Per catena di disuguaglianze si ottiene
+			\begin{equation*}
+			\sum_{j=1}^{n}c_jx_j \leq \sum_{j=1}^{n}c_j\hat{x}_j + \sum_{i=1}^{m}\hat{y}_it_i
+			\end{equation*}
+		\item [Dimostriamo $\geq$\,:] si consideri $\hat{x}$; essa, in particolare, avrà una determinata partizione di variabili in base/fuori base. Si consideri ora $x^*$, soluzione ottima di $\mathcal{P}(t)$: per $\lVert t\rVert\leq \epsilon$, $x^*$ preserva la stessa partizione di variabili in base/fuori base di $\hat{x}$ (solo la partizione, non il valore). 
+		\end{description}
+	\end{proof}
+	Si noti che il discorso sull'analisi di sensitività vale solo localmente: globalmente infatti c'è la soluzione duale che frena dal continuo acquisto delle risorse e si rischia di perdere l'ammissibilità.
+	
+	Rimane soltanto il problema di come computare questo $\epsilon$: per fare ciò, basta utilizzare la prova del nove della PL.
+\end{document}

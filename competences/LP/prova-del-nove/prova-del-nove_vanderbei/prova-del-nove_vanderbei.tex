@@ -1,0 +1,289 @@
+\documentclass{article}
+\title{Prova del nove per la PL - Tableau ``alla Vanderbei''}
+\author{Fabio Cassini, Romeo Rizzi}
+
+\textwidth 15.5cm
+\textheight 21.5cm
+\topmargin 0cm
+\evensidemargin 0in
+\oddsidemargin 0in
+
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath,amsthm,amssymb}
+
+\begin{document}
+
+\maketitle
+
+  	Anche la PL ha la sua prova del nove. Oltre al suo primo scopo di verificare se i conteggi fatti siano corretti, essa offre altresì delle versatili procedure base che risultano agevoli in altre occasioni, come ad esempio nel condurre analisi di sensitività, ma anche come strumento di investigazione/comprensione/dimostrazione. 
+  	
+  	A titolo esemplificativo, consideriamo il seguente problema di PL in forma standard di massimizzazione:
+  	
+  	\[
+	  	\begin{array}{l}
+		  	\max \mbox{\ }2x_1 + 7x_2 -2x_3\\
+		  	\left\{
+		  	\begin{array}{l}
+		  	\begin{array}{rrrr}
+		  	x_1 \;+&  2x_2 \;+&  x_3 \;\leq &   1 \\
+		  	-4x_1 \;-& 2x_2 \;+& 3x_3 \;\leq &   2 \\
+		  	\end{array} \\
+		  	x_1, x_2, x_3  \geq 0    
+		  	\end{array}
+		  	\right.
+	  	\end{array}
+  	\]
+  	Con l'introduzione delle variabili di slack ne otteniamo una prima espressione in forma canonica:
+
+  	\[
+	  	\begin{array}{l}
+		  	\max \mbox{\ }z = 2x_1 + 7x_2 -2x_3\\
+		  	\left\{
+		  	\begin{array}{l}
+		  	\begin{array}{rrrr}
+		  	x_4 =& 1 \;\;\;-x_1 \;-&  2x_2 \;-&  x_3 \\
+		  	x_5 =& 2 \;+4x_1 \;+& 2x_2 \;-& 3x_3 \\
+		  	\end{array} \\
+		  	x_1, x_2, x_3, x_4, x5  \geq 0    
+		  	\end{array}
+		  	\right.
+	  	\end{array}
+      \]
+      le cui $m+1$ equazioni che definiscono le $m$ variabili di slack ($x_4$ e $x_5$) e la funzione obiettivo ($z$) costituiscono il nostro primo dizionario. Si esegua ora un primo passo di pivot scambiando la $x_2$ (che offre un $+7$ di costo ridotto) con la $x_4$ (la prima che si annullerebbe al crescere della $x_2$, mantenute a zero le altre due variabili indipendenti). In termini di dizionari otteniamo:
+  	
+	\[
+		\begin{array}{c}
+			\mbox{\sc Dizionario Iniziale}\\ \\
+			\begin{array}{lcrrrr}
+			x_{4} &=& 1 & -x_1 & -2x_2 & -x_3 \\
+			x_{5} &=& 2 & +4x_1 & +2x_2 & -3x_3 \\
+			z    &=& 0 & +2x_1 & +7x_2 & -2x_3 \\
+			\end{array}\\
+		\end{array}
+		\hfill
+		\hspace{1cm}
+		{\Huge \Longrightarrow}
+		\hfill
+		\hspace{1.2cm}
+		\begin{array}{c}
+			\mbox{\sc Nuovo Dizionario}\\ \\
+			\begin{array}{lcrrrr}
+				x_{2} &=& \frac{1}{2} & -\frac{1}{2}x_1 & -\frac{1}{2}x_4 & -\frac{1}{2}x_3 \\
+				x_{5} &=& 3 & +3x_1 & -x_4 & -4x_3 \\
+				z    &=& \frac{7}{2} & -\frac{3}{2}x_1 & -\frac{7}{2}x_4 & -\frac{11}{2}x_3 \\
+			\end{array}\\	
+		\end{array}
+	\]
+	
+  	Se tutti i conteggi sono avvenuti correttamente, l'insieme delle soluzioni associate al nuovo dizionario dovrebbe coincidere con quello associato al dizionario iniziale: lo scopo dell'operazione di pivot, nella PL come nel metodo di eliminazione di Gauss, \`e infatti quello di produrre una riscrittura algebrica equivalente delle stesse equazioni, dove equivalente significa appunto che non cambia in nulla lo spazio delle soluzioni associato al sistema.
+    Inoltre, non appena si sbagli a calcolare un coefficiente, l'iperpiano relativo all'equazione in cui il coefficiente è contenuto si sposta e dunque è altamente improbabile che continui a contenere un particolare punto preso a riferimento. 
+
+  	Un modo per effettuare la verifica è dunque quello di prendere una soluzione qualsiasi che soddisfi il dizionario iniziale e verificare che essa soddisfi anche quello appena computato: se ciò non accade, allora si è certi che i conti effettuati sono errati. Questa verifica è abbastanza economica e permette agevolmente di tenere sotto controllo gli errori di conto.
+  	
+  	Si noti come non sia necessario che la soluzione presa come riferimento sia di base, basta che appartenga al sottospazio affine individuato dai vincoli di eguaglianza; vengono altresì ignorati i vincoli di non negativit\`a, e, in questo senso, non \`e nemmeno richiesto la soluzione sia ammissibile.
+    Tuttavia, quello che si tende a fare nella pratica è utilizzare soluzioni già disponibili, come ad esempio la soluzione di base associata al primissimo dizionario, oppure quelle associate ai due dizionari in gioco attualmente (prima o dopo il pivot, od entrambe), o ancora quella associata a uno qualsiasi dei dizionari precedentemente computati. 
+  	
+  	Per quanto riguarda l'esempio considerato, prendiamo come riferimento la soluzione di base del dizionario iniziale, ovvero $(x_1,x_2,x_3,x_4,x_5,z)=(0,0,0,1,2,0)$. Applicando la prova del nove si ha:
+  	
+	\[
+		\begin{array}{c}
+			\begin{array}{lcrrrr}
+				(0) &=& \frac{1}{2} & -\frac{1}{2}(0) & -\frac{1}{2}(1) & -\frac{1}{2}(0) \\
+				(2) &=& 3 & +3(0) & -(1) & -4(0) \\
+				(0)    &=& \frac{7}{2} & -\frac{3}{2}(0) & -\frac{7}{2}(1) & -\frac{11}{2}(0) \\
+			\end{array}\\		
+		\end{array}
+	\]
+	 
+	Tutte e tre le equazioni sono soddisfatte, pertanto la prova del nove è stata superata.
+	
+	Si noti che, utilizzando come riferimento una soluzione di base, alcuni coefficienti non vengono verificati essendo moltiplicati per $0$: è possibile sopperire a questa mancanza utilizzando come soluzione di riferimento una che non abbia a zero le variabili fuori base.
+ 	
+  	Nella pratica, tipicamente non componiamo esplicitamente i dizionari poiché preferiamo operare su una loro scrittura più compatta: il tableau. In questi termini, il passo di pivot dell'esempio precedente si traduce in:
+  	
+  	\[
+  	\begin{array}{c}
+  	\mbox{\sc Dizionario Iniziale}\\ \\
+  	\begin{array}{lcrrrr}
+  	z    &=& 0 & +2x_1 & +7x_2 & -2x_3 \\  	
+  	x_{4} &=& 1 & -x_1 & -2x_2 & -x_3 \\
+  	x_{5} &=& 2 & +4x_1 & +2x_2 & -3x_3 \\
+  	\end{array}\\ \\
+  	\hspace{1cm} {\Huge \downarrow} {\Large \mbox{ \ $(pivot)$}}
+  	\end{array}
+  	\hfill
+  	\hspace{1cm}
+  	{\Huge \Longleftrightarrow}
+  	\hfill
+  	\hspace{1.2cm}
+  	\begin{array}{c}
+  	\mbox{\sc Tableau Iniziale}\\ 
+  	\begin{array}{rrrrr}
+  	   &  & x_1  & x_2 & x_3  \\
+  	z  & 0 & 2 &  7   &  -2 \\  	
+  	x_4 &  1 & -1  &  \fbox{-2}   &  -1 \\
+  	x_5 & 2 & 4 & 2 &  -3 \\
+  	\end{array}\\ \\
+  	\hspace{1cm} {\Huge \downarrow} {\Large \mbox{ \ $(pivot)$}}
+  	\end{array}
+  	\]
+  	
+  	\[
+  	\begin{array}{c}
+  	\mbox{\sc Nuovo Dizionario}\\ \\
+			\begin{array}{lcrrrr}
+			z    &=& \frac{7}{2} & -\frac{3}{2}x_1 & -\frac{7}{2}x_4 & -\frac{11}{2}x_3 \\			
+			x_{2} &=& \frac{1}{2} & -\frac{1}{2}x_1 & -\frac{1}{2}x_4 & -\frac{1}{2}x_3 \\
+			x_{5} &=& 3 & +3x_1 & -x_4 & -4x_3 \\
+			\end{array}		
+  	\end{array}
+  	\hfill
+  	\hspace{1cm}
+  	{\Huge \Longleftrightarrow}
+  	\hfill
+  	\hspace{1.2cm}
+  	\begin{array}{c}
+  	\mbox{\sc Nuovo Tableau}\\ 
+  	\begin{array}{rrrrr}
+  	& & x_1  & x_4 & x_3  \\
+  	z  &  \frac{7}{2} &  -\frac{3}{2} & -\frac{7}{2}  & -\frac{11}{2} \\  	
+  	x_2 &  \frac{1}{2} &  -\frac{1}{2} & -\frac{1}{2}   &  -\frac{1}{2} \\
+  	x_5 & 3 &  3  &  -1  &  -4 \\
+  	\end{array}
+  	\end{array}
+  	\]
+  	
+  	Vorremmo ora illustrare come sia semplice effettuare la prova del nove direttamente sul tableau: una volta scelta una soluzione di riferimento (ad esempio quella di base associata al tableau dato, che \`e immediato leggere dal tableau stesso se sapete come le equazioni del dizionario sono codificate entro esso), per verificarne l'appartenenza al sottospazio descritto dal nuovo tableau si assegna ad ogni variabile il corrispettivo valore nella soluzione di riferimento. Ad esempio, utilizzando come riferimento la soluzione di base del dizionario e tableau iniziale, nel nuovo tableau si ottiene:
+  	
+  	\[
+  	\begin{array}{rrrrrr}
+  	& &  & (0)  & (1) & (0) \\
+  	& &  & \downarrow \;& \downarrow \;& \downarrow \;\\
+  	& &  & x_1  & x_4 & x_3  \\
+  	(0) \rightarrow & z  & \frac{7}{2} & -\frac{3}{2} & -\frac{7}{2}  & -\frac{11}{2} \\  	
+  	(0) \rightarrow & x_2 &  \frac{1}{2} &  -\frac{1}{2}  & -\frac{1}{2}  &  -\frac{1}{2} \\
+  	(2) \rightarrow &   x_5 &  3 &  3  &  -1  &  -4 \\
+  	\end{array}
+  	\]
+  	
+  	Per ogni riga deve valere quanto segue: il valore del coefficiente associato alla riga deve eguagliare la somma di tutti i coefficienti della riga, ognuno moltiplicato per il coefficiente della colonna a cui appartiene. Nell'esempio:
+  	
+	\[
+	\begin{array}{c}
+	\begin{array}{llcrrrr}
+	\text{Riga 1:} & (0) &=& \frac{7}{2}  & -\frac{3}{2}(0) & -\frac{7}{2}(1) & -\frac{11}{2}(0) \\
+	\text{Riga 2:} & (0) &=& \frac{1}{2} & -\frac{1}{2}(0) & -\frac{1}{2}(1) & -\frac{1}{2}(0) \\
+	\text{Riga 3:} & (2) &=& 3 & +3(0) & -1(1) & -4(0) \\
+	\end{array}\\		
+	\end{array}
+	\]  	
+	
+  	Tutte e tre le equazioni sono soddisfatte, pertanto la prova del nove è stata superata.
+  	
+  	Per inciso, la prova del nove descritta fino ad ora può essere definita ``per righe''; grazie alla visione primale/duale del problema, è possibile ricavarne anche una versione ``per colonne''.
+  	
+  	In particolare, dato un tableau primale, è possibile leggere da esso non solo la soluzione di base primale associata, ma anche quella duale associata (competenza che se ancora non avete vi sveleremo subito); nel caso del tableau iniziale esposto precedentemente, la soluzione di base duale ad esso associata è data da $(y_1,y_2,y_3,y_4,y_5,z)=(-2,-7,2,0,0,0)$. Infatti, dal tableau primale si riescono ad esplicitare direttamente non solo le equazioni del dizionario primale da esso codificato, ma anche quelle del dizionario duale associato, parimenti codificato nel tableau. Considerando l'esempio precedente la relazione \`e la seguente:
+  	
+  	\[
+  	\begin{array}{c}
+  	\mbox{\sc Tableau Primale Iniziale}\\
+  	\begin{array}{rrrrr}
+  	&  & x_1  & x_2 & x_3  \\
+  	z  & 0 & 2 &  7   &  -2 \\  	
+  	x_4 &  1 & -1  &  \fbox{-2}   &  -1 \\
+  	x_5 & 2 & 4 & 2 &  -3 \\
+  	\end{array}\\ \\
+  	\hspace{1cm} {\Huge \downarrow} {\Large \mbox{ \ $(pivot)$}}
+  	\end{array}
+  	\hfill
+  	\hspace{1cm}
+  	{\Huge \Longleftrightarrow}
+  	\hfill
+  	\hspace{1.2cm}
+  	\begin{array}{c}
+  	\mbox{\sc Dizionario Duale Iniziale}\\
+  	\begin{array}{lcrrr}
+  	z &=& y_4 & +2y_5 & \\  	
+  	y_{1} &=& -2 & +y_4 & -4y_5  \\
+  	y_{2} &=& -7 & +2y_4 & -2y_5 \\
+  	y_{3} &=& 2 & +y_4 & +3y_5 \\
+   	\end{array}	\\	\\
+  	\hspace{1cm} {\Huge \downarrow} {\Large \mbox{ \ $(pivot)$}}
+  	\end{array}
+  	\]
+  	
+  	\[
+  	\begin{array}{c}
+  	\mbox{\sc Tableau Primale Nuovo}\\
+ 	\begin{array}{rrrrr}
+  	 & & x_1  & x_4 & x_3  \\
+     z  &  \frac{7}{2} &  -\frac{3}{2} & -\frac{7}{2}  & -\frac{11}{2} \\  	
+  	 x_2 &  \frac{1}{2} &  -\frac{1}{2} & -\frac{1}{2}   &  -\frac{1}{2} \\
+  	 x_5 & 3 &  3  &  -1  &  -4 \\
+  	 \end{array}
+  	\end{array}
+  	\hfill
+  	\hspace{1cm}
+  	{\Huge \Longleftrightarrow}
+  	\hfill
+  	\hspace{1.2cm}
+  	\begin{array}{c}
+  	\mbox{\sc Dizionario Duale Nuovo}\\
+  	\begin{array}{lcrrr}
+  	z &=& \frac{7}{2} & +\frac{1}{2}y_2 & +3y_5  \\  	
+  	y_{1} &=& \frac{3}{2} & +\frac{1}{2}y_2 & -3y_5  \\
+  	y_{4} &=& \frac{7}{2} & +\frac{1}{2}y_2 & +y_5  \\
+  	y_{3} &=& \frac{11}{2} & +\frac{1}{2}y_2 & +4y_5  \\
+  	\end{array}
+  	\end{array}
+  	\]
+  	
+  	Avendo a disposizione i dizionari duali, possiamo applicare dunque su di essi la prova del nove per verificare i conteggi (utilizzando come riferimento la soluzione di base duale iniziale). In particolare, si ottiene:
+  	
+	\[
+	\begin{array}{c}
+	\begin{array}{lclll}
+	(0) &=& +\frac{7}{2} & +\frac{1}{2}(-7) & +3(0)  \\	
+	(-2) &=& +\frac{3}{2}& +\frac{1}{2}(-7) & -3(0)  \\
+	(0) &=& +\frac{7}{2}& +\frac{1}{2}(-7) & +1(0)  \\
+	(2) &=& +\frac{11}{2}& +\frac{1}{2}(-7) & +4(0)  \\
+	\end{array}\\		
+	\end{array}
+	\]
+	
+	Tutte e quattro le equazioni sono soddisfatte, pertanto la prova del nove è stata superata.
+	
+	Per arrivare alla stessa conclusione lavorando direttamente sul tableau primale (cosa che tipicamente si fa nella pratica), si assegni ad ogni variabile il corrispettivo valore nella soluzione di riferimento duale (il valore della funzione obiettivo va associato al termine noto). Nell'esempio si ha:
+	
+  	\[
+  	\begin{array}{rrrrrr}
+  	& & (0) & (-2)  & (0) & (2) \\
+  	&  & \downarrow \;& \downarrow \;& \downarrow \;& \downarrow \;\\
+  	& &  & x_1  & x_4 & x_3  \\
+  	 & z  & \frac{7}{2} & -\frac{3}{2} & -\frac{7}{2}  & -\frac{11}{2} \\
+  	(-7) \rightarrow & x_2 &  \frac{1}{2} &  -\frac{1}{2}  & -\frac{1}{2}  &  -\frac{1}{2} \\
+  	(0) \rightarrow &   x_5 &  3 &  3  &  -1  &  -4 \\
+  	
+  	\end{array}
+  	\]	   	
+  	
+  	Per ogni colonna deve valere quanto segue: il valore del coefficiente associato alla colonna deve eguagliare la somma di tutti i coefficienti della colonna, ognuno moltiplicato per il coefficiente della riga a cui appartiene cambiato di segno. Nell'esempio:  	
+  	
+  	\[
+  	\begin{array}{c}
+  	\begin{array}{llcrrr}
+  	\text{Colonna 1:} & (0) &=& \frac{7}{2}(-1) & +\frac{1}{2}(7) & +3(-0) \\
+  	\text{Colonna 2:} & (-2) &=& -\frac{3}{2}(-1) & -\frac{1}{2}(7) & +3(-0) \\
+  	\text{Colonna 3:} & (0) &=& -\frac{3}{2}(-1) & -\frac{1}{2}(7) & +3(-0) \\
+  	\text{Colonna 4:} & (2) &=& -\frac{11}{2}(-1) & -\frac{1}{2}(7) & -4(-0) \\
+  	\end{array}\\		
+  	\end{array}
+  	\]  	
+  	
+  	Tutte e quattro le equazioni sono soddisfatte, pertanto la prova del nove ``per colonne'' è stata superata.
+  	
+  	Si noti come gli stessi ragionamenti ed analoghe procedure possano essere intrapresi anche per formati diversi di tableau: a questo proposito si faccia riferimento al documento sulla Prova del nove per la PL con tableau ``classico''.
+\end{document}  

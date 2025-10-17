@@ -1,0 +1,1009 @@
+\documentclass[10pt]{article}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage[table]{xcolor}
+\usepackage{epsfig}
+\usepackage{fancybox}
+
+
+\textwidth 15.5cm
+\textheight 21.5cm
+\topmargin 0cm
+\evensidemargin 0in
+\oddsidemargin 0in
+
+
+\def\bbbr{{\rm I\!R}}
+\def\bbbm{{\rm I\!M}}
+\def\bbbn{{\rm I\!N}}
+
+\def\sm{\setminus}
+\newcommand {\ol}[1]{\overline{#1}}
+
+\newtheorem{Teo}{Theorem}[section]
+\newtheorem{Dom}{Domanda}%[section]
+\newtheorem{Ese}{Esercizio}%[section]
+\newtheorem{Att}{Attenzione!!! \ }%[section]
+\newtheorem{Not}{Nota}%[section]
+\newtheorem{Con}[Teo]{Conjecture}
+\newtheorem{Que}{Question}
+\newtheorem{Cor}[Teo]{Corollary}
+\newtheorem{Property}[Teo]{Property}
+\newtheorem{Pro}[Teo]{Proposition}
+\newtheorem{Cla}[Teo]{Claim}
+\newtheorem{Lem}[Teo]{Lemma}
+\newtheorem{Obs}[Teo]{Observation}
+
+\pagestyle{empty}
+ 
+\begin{document}
+
+\begin{center}
+   {\LARGE \bf Il tableau\footnote{``tableau'' si pronuncia come fosse scritto tabl\`o} ``alla Vanderbei'': un sussidio alla gestione dei conteggi}
+\end{center}
+
+Il tableau si \`e imposto come scrittura compatta di
+un dizionario nella didattica della 
+Programmazione Lineare.
+Spesso i vari elementi,
+teorici ed algoritmici,
+che compongono la PL
+vengono introdotti come metodi
+di manipolazione del tableau che conducano
+ai risultati desiderati.
+Se avrete altre occasioni di incontro con la PL 
+vi dovrete probabilmente confrontare
+con il tableau.
+Conviene pertanto impadronirsi ora di questo approccio
+con relativo linguaggio e tecnicalit\`a.
+Proponiamo l'uso del tableau
+svolgendo qu\`\i\ di seguito alcuni
+semplici esercizi di programmazione lineare attenendoci a procedimenti standard di soluzione.\\
+
+Il presente documento adotta il formato di tableau rivisto e proposto da Robert Vanderbei nel suo libro di testo ``Linear Programming: Foundations and Extensions'' del 1997. Questo tableau ``alla Vanderbei'' presenta dei vantaggi ma ancora resta pervasivo l'uso di convenzioni precedenti ed \`e possibile ti capiter\`a di confrontarti con la versione ``classica'' del tableau.
+Il presente documento ha un fratello gemello che compie il medesimo percorso
+ma impiegando il tableau classico invece che quello alla Vanderbei.
+Se interessati al tableau classico si consulti il documento gemello.\\
+
+
+\medskip
+\noindent
+{\large \bf Condurre il simplesso col tableau.}\\
+
+Al seguente problema di PL associo il corrispondente tableau:
+
+\[
+   \begin{array}{l}
+        \max \mbox{\ }6x_1 + 7x_2\\
+        \left\{
+        \begin{array}{l}
+        \begin{array}{rrr}
+            2x_1 \;+& 3x_2 \;\leq &   12 \\
+            2x_1 \;+&  x_2 \;\leq &    8 \\
+        \end{array} \\
+        x_1, x_2  \geq 0    
+        \end{array}
+        \right.
+   \end{array}
+\hfill
+\hspace{1cm}
+{\Huge \Longrightarrow}
+\hfill
+\hspace{2cm}
+   \begin{array}{rrrr}
+         &		& x_1  & x_2  \\
+       z  & 0 & 6 &   7 \\         
+      x_3 &  12 &  -2 & -3 \\
+      x_4 &  8 &  -2 &   -1 \\
+   \end{array}
+\]
+
+dove $x_3$ ed $x_4$ indicano le variabili di slack.
+Osserviamo che alla funzione obiettivo corrisponde 
+(nella prassi diffusa) la prima riga.
+
+A dire il vero il tableau non corrisponde propriamente
+ad un problema di PL ma ad un particolare dizionario
+di un problema di PL ossia ad un problema di PL
+visto dalla particolare prospettiva di una sua soluzione di base
+(ammissibile o meno).
+Il caso di cui sopra era fortuito:
+essendo il problema in forma standard era possibile
+scriverne direttamente un primo tableau.
+
+\begin{Dom}
+   A quale soluzione di base si riferisce
+   il tableau dato sopra?
+\end{Dom}
+{\em Risposta: \/}
+tutte le variabili di decisione fuori base
+($x_1 = x_2 = 0$) mentre $x_3=12$ ed $x_4=8$.\\
+
+In corrispondenza di una qualsiasi soluzione,
+la funzione obiettivo assume un determinato valore,
+che viene riportato a sinistra nella prima riga del tableau.\\
+
+In generale, il seguente dizionario \`e 
+pi\`u compattamente descritto in forma di tableau:
+
+
+\[ {\small
+   \begin{array}{lcrrrrrr}
+         z    &=& v & +c_1 x_1 & \ldots & +c_j x_j & \ldots &  +c_n x_n \\   
+      x_{n+1} &=& b_1 & -a_{1,1}x_1 & \ldots & -a_{1,j}x_j & \ldots & -a_{1,n} x_n \\
+      \ldots  &\ldots& \ldots  & \ldots & \ldots  & \ldots & \ldots  & \ldots \\
+      x_{n+i} &=& b_i & -a_{i,1}x_1 & \ldots & -a_{i,j}x_j & \ldots & -a_{i,n} x_n \\
+      \ldots  &\ldots& \ldots  & \ldots & \ldots  & \ldots & \ldots  & \ldots \\
+      x_{n+m} &=& b_m & -a_{m,1}x_1 & \ldots & -a_{m,j}x_j & \ldots & -a_{m,n} x_n \\
+   \end{array}
+\hspace{0.2cm}
+{\Huge \Longleftrightarrow}
+\hspace{0.2cm}
+   \begin{array}{rrrrrrr}
+        &	  & x_1 \; & \ldots  & x_j \; & \ldots  \; & x_n\\
+         z    & v & c_1 & \ldots & c_j & \ldots &  c_n \\        
+      x_{n+1}  &  b_1 & -a_{1,1} & \ldots & -a_{1,j} & \ldots & -a_{1,n} \\
+      \ldots  & \ldots  & \ldots & \ldots  & \ldots & \ldots  & \ldots \\
+      x_{n+i}  &  b_i & -a_{i,1} & \ldots & -a_{i,j} & \ldots & -a_{i,n} \\
+      \ldots  & \ldots  & \ldots & \ldots  & \ldots & \ldots  & \ldots \\
+      x_{n+m}  &  b_m & -a_{m,1} & \ldots & -a_{m,j} & \ldots & -a_{m,n} \\
+   \end{array}
+  }
+\]
+
+
+
+Ecco un secondo esempio:
+
+\[
+   \begin{array}{c}
+   \mbox{\sc Problema di PL}\\ 
+   \begin{array}{l}
+        \min \mbox{\ }2x_1 + 7x_2 -2x_3\\
+        \left\{
+        \begin{array}{l}
+        \begin{array}{rrrr}
+             x_1 \;+&  2x_2 \;+&  x_3 \;\leq &   1 \\
+           -4x_1 \;+& -2x_2 \;+& 3x_3 \;\leq &   2 \\
+        \end{array} \\
+        x_1, x_2, x_3  \geq 0    
+        \end{array}
+        \right.
+   \end{array}
+   \end{array}
+\]
+\[
+   \begin{array}{c}
+   \mbox{\sc Dizionario Iniziale}\\ \\
+   \begin{array}{lcrrrr}
+         z    &=& 0 & +2x_1 & +7x_2 & -2x_3 \\   
+      x_{4} &=& 1 & -x_1 & -2x_2 & -x_3 \\
+      x_{5} &=& 2 & +4x_1 & +2x_2 & -3x_3 \\
+   \end{array}
+   \end{array}
+\hfill
+\hspace{1cm}
+{\Huge \Longleftrightarrow}
+\hfill
+\hspace{1.2cm}
+   \begin{array}{c}
+   \mbox{\sc Tableau}\\ 
+   \begin{array}{rrrrr}
+         &	& x_1  & x_2 & x_3  \\
+       z  & 0 & 2 &  7   &  -2 \\         
+      x_4 &  1 &  -1 &  -2   &  -1 \\
+      x_5 & 2 & 4 & 2 &  \fbox{-3} \\
+   \end{array}
+   \end{array}
+\]
+
+\begin{Dom}
+   Secondo te,
+   perch\'e il \fbox{-3} nel tableau sopra \`e stato incorniciato?
+\end{Dom}
+{\em Risposta: \/}
+Il \fbox{-3} \`e l'elemento di {\em pivot}.\\
+
+
+\begin{Dom}
+   Come sceglieresti l'elemento di pivot direttamente dal tableau?
+\end{Dom}
+{\em Possibile Risposta: \/}
+Come colonna di pivot si sceglie
+una qualsiasi colonna $\bar{\jmath}$
+avente il primo elemento $c_{\bar{\jmath}}$
+maggiormente negativo ($-2$ nell'ultima colonna)
+dacch\`e stiamo minimizzando.\\
+
+La scelta della riga di pivot si effettua
+considerando tutti i $-a_{i,\bar{\jmath}}$ negativi.
+Tra questi, quello che minimizza il rapporto $b_i/a_{i,\bar{\jmath}}$,
+\`e l'elemento di pivot.\\ 
+
+\begin{Ese}
+   La regola ora introdotta per la scelta dell'elemento
+   di pivot non dovrebbe esserti del tutto nuova.
+   Sapresti proporre ora una seconda regola per
+   la scelta dell'elemento di pivot nel tableau?
+\end{Ese}
+
+Eseguiamo ora il passo di pivot nel dizionario
+e scopriamo cos\`\i\ come debba venir
+aggiornato il tableau.
+
+\[
+   \begin{array}{c}
+   \mbox{\sc Dizionario Iniziale}\\ \\
+   \begin{array}{lcrrrr}
+         z    &=& 0 & +2x_1 & +7x_2 & -2x_3 \\   
+      x_{4} &=& 1 & -x_1 & -2x_2 & -x_3 \\
+      x_{5} &=& 2 & +4x_1 & +2x_2 & -3x_3 \\
+   \end{array}\\ \\
+       \hspace{1cm} {\Huge \downarrow} {\Large \mbox{ \ $(pivot)$}}
+   \end{array}
+\hfill
+\hspace{1cm}
+{\Huge \Longleftrightarrow}
+\hfill
+\hspace{1.2cm}
+   \begin{array}{c}
+   \mbox{\sc Tableau Iniziale}\\ 
+	\begin{array}{rrrrr}
+	&	& x_1  & x_2 & x_3  \\
+	z  & 0 & 2 &  7   &  -2 \\         
+	x_4 &  1 &  -1 &  -2   &  -1 \\
+	x_5 & 2 & 4 & 2 &  \fbox{-3} \\
+	\end{array}\\ \\
+       \hspace{1cm} {\Huge \downarrow} {\Large \mbox{ \ $(pivot)$}}
+   \end{array}
+\]
+
+\[
+   \begin{array}{c}
+   \mbox{\sc Nuovo Dizionario}\\ \\
+   \begin{array}{lcrrrr}
+      z    &=& -\frac{4}{3} & -\frac{2}{3}x_1 & +\frac{17}{3}x_2 & +\frac{2}{3}x_5 \\   
+      x_{4} &=& \frac{1}{3} & -\frac{7}{3}x_1 & -\frac{8}{3}x_2 & +\frac{1}{3}x_3 \\
+      x_{3} &=& \frac{2}{3} & +\frac{4}{3}x_1 & +\frac{2}{3}x_2 & -\frac{1}{3}x_5 \\
+   \end{array}
+   \end{array}
+\hfill
+\hspace{1cm}
+{\Huge \Longleftrightarrow}
+\hfill
+\hspace{1.2cm}
+   \begin{array}{c}
+   \mbox{\sc Nuovo Tableau}\\ 
+   \begin{array}{rrrrr}
+        &	 & x_1  & x_2 & x_5  \\
+       z  &  -\frac{4}{3} &  -\frac{2}{3} & \frac{17}{3}  & \frac{2}{3} \\        
+      x_4 &  \frac{1}{3} &  \fbox{$-\frac{7}{3}$} & -\frac{8}{3}   &  \frac{1}{3} \\
+      x_3 & \frac{2}{3} &  \frac{4}{3}  &  \frac{2}{3}  &  -\frac{1}{3} \\
+   \end{array}
+   \end{array}
+\]
+
+Nel tableau, siano $\bar{\imath}$ e $\bar{\jmath}$
+la riga e la colonna di pivot.
+Sia $p= -a_{\bar{\imath},\bar{\jmath}}$ il valore dell'elemento di pivot.
+Ecco la regola generale per
+eseguire il pivot direttamente sul tableau:
+
+\[
+   \begin{array}{rrrrrrr}
+   &	  & x_1 \; & \ldots  & x_{\bar{\jmath}} \; & \ldots  \; & x_n\\
+   z    & v & c_1 & \ldots & c_{\bar{\jmath}} & \ldots &  c_n \\        
+   x_{n+1}  &  b_1 & -a_{1,1} & \ldots & -a_{1,{\bar{\jmath}}} & \ldots & -a_{1,n} \\
+   \ldots  & \ldots  & \ldots & \ldots  & \ldots & \ldots  & \ldots \\
+   x_{n+\bar{\imath}}  &  b_{\bar{\imath}} & -a_{{\bar{\imath}},1} & \ldots & -a_{{\bar{\imath}},{\bar{\jmath}}} & \ldots & -a_{{\bar{\imath}},n} \\
+   \ldots  & \ldots  & \ldots & \ldots  & \ldots & \ldots  & \ldots \\
+   x_{n+m}  &  b_m & -a_{m,1} & \ldots & -a_{m,{\bar{\jmath}}} & \ldots & -a_{m,n} \\
+   \end{array}
+\hspace{0.2cm}
+{\Huge \Longleftrightarrow}
+\hspace{0.2cm}
+   \begin{array}{rrrrrrr}
+         & & x_1 \; & \ldots  & x_{n+\bar{\imath}} \; & \ldots  \; & x_n\\
+         z    &  \ldots & \ldots & \ldots & \frac{c_{\bar{\jmath}}}{p} & \ldots & \ldots \\         
+      x_{n+1} &  \ldots & \ldots & \ldots & -\frac{a_{1,\bar{\jmath}}}{p} & \ldots & \ldots  \\
+      \ldots  & \ldots  & \ldots & \ldots  & \ldots & \ldots  & \ldots \\
+      x_{\bar{\jmath}} &  -\frac{b_{\bar{\imath}}}{p} & \frac{a_{\bar{\imath},1}}{p} & \ldots & \frac{1}{p} & \ldots & \frac{a_{\bar{\imath},n}}{p} \\
+      \ldots  & \ldots  & \ldots & \ldots  & \ldots & \ldots  & \ldots \\
+      x_{n+m} & \ldots & \ldots & \ldots & -\frac{a_{m,\bar{\jmath}}}{p} & \ldots & \ldots \\
+   \end{array}
+\]
+Gli elementi non specificati del secondo tableau
+si modificano come segue:
+$-a_{i,j}$ diviene $-a_{i,j}-\frac{-a_{\bar{\imath},j}-a_{i,\bar{\jmath}}}{p}$ e 
+similmente $c_j$ diviene $c_j-\frac{-a_{\bar{\imath},j}c_{\bar{\jmath}}}{p}$.
+Inoltre $b_i$ diviene $b_i-\frac{-a_{i,\bar{\jmath}}b_{\bar{\imath}}}{p}$
+e $v$ diviene $v-\frac{c_{\bar{\jmath}}b_{\bar{\imath}}}{p}$.\\ 
+
+In pratica l'operazione di pivot viene spesso condotta come la sequenza di 5 passi illustrata nelle seguenti figure.
+
+\begin{itemize}
+	\item[1.] Le variabili associate alla riga ed alla colonna di pivot
+	si scambiano tra di loro.
+	\begin{figure}[h!tb]
+		\centering
+		\[
+		\begin{array}{rrrr>{\columncolor{red!20}}r}	
+		& & x_1  & x_2 & \mathbf{x_3}  \\
+		z  & 0 & 2 & 7 &  -2  \\	
+		x_4 & 1 & -1 &  -2 &  -1  \\
+		\rowcolor{red!20}
+		\mathbf{x_5} & 2 & 4 & 2 & -3 \\
+		\end{array}	   
+		\hspace{0.5cm}
+		{\Huge \Longrightarrow}
+		\hspace{0.5cm}
+		\begin{array}{rrrr>{\columncolor{red!20}}r}
+		& & x_1  & x_2 & \mathbf{x_5}  \\
+		z  &  &  &  & \\		
+		x_4 &  &  &  & \\
+		\rowcolor{red!20}
+		\mathbf{x_3} & &  &  & \\
+		\end{array}   
+		\]
+		\caption{Primo passaggio: scambio delle etichette della riga e della colonna di pivot.}
+		\label{1st}	
+	\end{figure}
+	
+	\item[2.] L'elemento di pivot diviene $p' := \frac{1}{p}$, dove $p:= -a_{\bar{\imath},\bar{\jmath}}$ era il valore del pivot prima che avvenga il passo di pivot.
+	\begin{figure}[h!tb]
+		\centering
+		\[
+		\begin{array}{rrrr>{\columncolor{red!20}}r}	
+		& & x_1  & x_2 & x_3  \\
+		z  & 0 & 2 & 7 &  -2  \\	
+		x_4 & 1 & -1 &  -2 &  -1  \\
+		\rowcolor{red!20}
+		x_5 & 2 & 4 & 2 & \mathbf{-3} \\
+		\end{array}	   
+		\hspace{0.5cm}
+		{\Huge \Longrightarrow}
+		\hspace{0.5cm}
+		\begin{array}{rrrr>{\columncolor{red!20}}r}
+		& & x_1  & x_2 & x_5  \\
+		z  &  &  &  & \\		
+		x_4 &  &  &  & \\
+		\rowcolor{red!20}
+		x_3 & &  &  & \mathbf{-\frac{1}{3}} \\
+		\end{array}   
+		\]
+		\caption{Secondo passaggio: ricalcolo dell'elemento di pivot.}
+		\label{2nd}	
+	\end{figure}
+	\item[3.] Gli elementi contenuti nella colonna di pivot
+	vengono divisi per $p$ (o moltiplicati per $p'$).        
+	\begin{figure}[h!tb]
+		\centering
+		\[
+		\begin{array}{rrrr>{\columncolor{red!20}}r}	
+		& & x_1  & x_2 & x_3  \\
+		z  & 0 & 2 & 7 &  \mathbf{-2}  \\	
+		x_4 & 1 & -1 &  -2 &  \mathbf{-1}  \\
+		x_5 & 2 & 4 & 2 & -3 \\
+		\end{array}	     
+		\hspace{0.5cm}
+		{\Huge \Longrightarrow}
+		\hspace{0.5cm}
+	\begin{array}{rrrr>{\columncolor{red!20}}r}
+	& & x_1  & x_2 & x_5  \\
+	z  &  &  &  & \mathbf{\frac{2}{3}} \\		
+	x_4 &  &  &  & \mathbf{\frac{1}{3}} \\
+	x_3 & &  &  & -\frac{1}{3} \\
+	\end{array}   
+		\]
+		\caption{Terzo passaggio: ricalcolo della colonna di pivot.}
+		\label{3rd}	
+	\end{figure}
+	\item[4.] Gli elementi contenuti nella riga di pivot
+	vengono divisi per $p$ (o moltiplicati per $p'$) e invertiti di segno.
+	\begin{figure}[h!tb]
+		\centering
+		\[
+		\begin{array}{rrrrr}	
+		& & x_1  & x_2 & x_3  \\
+		z  & 0 & 2 & 7 &  -2 \\	
+		x_4 & 1 & -1 &  -2 &  -1  \\
+		\rowcolor{red!20}
+		x_5 & \mathbf{2} & \mathbf{4} & \mathbf{2} & -3 \\
+		\end{array}	     
+		\hspace{0.5cm}
+		{\Huge \Longrightarrow}
+		\hspace{0.5cm}
+		\begin{array}{rrrrr}
+		& & x_1  & x_2 & x_5  \\
+		z  &  &  &  & \frac{2}{3} \\		
+		x_4 &  &  &  & \frac{1}{3} \\
+		\rowcolor{red!20}		
+		x_3 & \mathbf{\frac{2}{3}} & \mathbf{\frac{4}{3}} & \mathbf{\frac{2}{3}} & -\frac{1}{3} \\
+		\end{array}   
+		\]
+		\caption{Quarto passaggio: ricalcolo della riga di pivot.}
+		\label{4th}	
+	\end{figure}
+	\item[5.] Ogni elemento del tableau che non appartenga
+	n\`e alla riga n\`e alla colonna di pivot 
+	viene modificato come segue:
+	$-a_{i,j}$ diviene $-a_{i,j}-\frac{-a_{\bar{\imath},j}-a_{i,\bar{\jmath}}}{p}$ e $c_j$ diviene $c_j-\frac{-a_{\bar{\imath},j}c_{\bar{\jmath}}}{p}$.
+	Inoltre $b_i$ diviene $b_i-\frac{-a_{i,\bar{\jmath}}b_{\bar{\imath}}}{p}$
+	e $v$ diviene $v-\frac{c_{\bar{\jmath}}b_{\bar{\imath}}}{p}$.
+	In realt\`a abbiamo solo dettagliato tre scritture per quella che in fondo \`e un'unica regola di aggiornamento omogenea che vale per tutti gli elementi fuori dalla riga e dalla colonna di pivot.
+	\begin{figure}[h!tb]
+		\centering
+		\[
+		\begin{array}{rrrr>{\columncolor{red!20}}r}	
+		& & x_1  & x_2 & x_3  \\
+		z  & \mathbf{0} & \mathbf{2} & \mathbf{7} &  -2 \\	
+		x_4 & \mathbf{1} & \mathbf{-1} & \mathbf{-2} &  -1  \\
+		\rowcolor{red!20}
+		x_5 & 2 & 4 & 2 & -3 \\
+		\end{array}	     
+		\hspace{0.5cm}
+		{\Huge \Longrightarrow}
+		\hspace{0.5cm}
+		\begin{array}{rrrr>{\columncolor{red!20}}r}
+		& & x_1  & x_2 & x_5  \\
+		z  & \mathbf{-\frac{4}{3}} & \mathbf{-\frac{2}{3}} & \mathbf{\frac{17}{3}} & \frac{2}{3} \\		
+		x_4 & \mathbf{\frac{1}{3}} & \mathbf{-\frac{7}{3}} & \mathbf{-\frac{8}{3}} & \frac{1}{3} \\
+		\rowcolor{red!20}		
+		x_3 & \frac{2}{3} & \frac{4}{3} & \frac{2}{3} & -\frac{1}{3} \\
+		\end{array} 
+		\]
+		\caption{Quinto passaggio: ricalcolo degli altri elementi.}
+		\label{5th}	
+	\end{figure}
+	
+	La regola poteva anche essere data con riferimento ai nuovi valori sulla colonna e riga di pivot, ossia $-a'_{i,j} \leftarrow -a_{i,j}+\frac{-a'_{\bar{\imath},j}-a'_{i,\bar{\jmath}}}{p'}$. Quindi $-a_{i,j} = -a'_{i,j} - \frac{-a'_{\bar{\imath},j}-a'_{i,\bar{\jmath}}}{p'}$.
+\end{itemize}
+
+\begin{Dom}
+	Cosa succede se facciamo pivot due volte di seguito sullo stesso elemento di pivot?
+\end{Dom}
+
+Ma ritorniamo al nostro problema di PL
+ed eseguiamo il prossimo passo di pivot.
+
+\[
+   \begin{array}{rrrrr}
+   &	 & x_1  & x_2 & x_5  \\
+   z  &  -\frac{4}{3} &  -\frac{2}{3} & \frac{17}{3}  & \frac{2}{3} \\        
+   x_4 &  \frac{1}{3} &  \fbox{$-\frac{7}{3}$} & -\frac{8}{3}   &  \frac{1}{3} \\
+   x_3 & \frac{2}{3} &  \frac{4}{3}  &  \frac{2}{3}  &  -\frac{1}{3} \\
+   \end{array}
+\hfill
+\hspace{1cm}
+{\longrightarrow}
+\hfill
+\hspace{1.2cm}
+   \begin{array}{rrrrr}
+   &	 & x_4  & x_2 & x_5  \\
+   z  &  -\frac{10}{7} &  \frac{2}{7} & \frac{45}{7}  & \frac{4}{7} \\        
+   x_1 &  \frac{1}{7} &  -\frac{3}{7} & -\frac{8}{7}   &  \frac{1}{7} \\
+   x_3 & \frac{6}{7} &  -\frac{4}{7}  &  -\frac{6}{7}  &  -\frac{1}{7} \\
+   \end{array}
+\]
+
+Gli elementi della prima riga (non considerando il primo, che rappresenta il valore della funzione obiettivo) sono ora tutti positivi.
+Possiamo pertanto concludere che il valore ottimo del nostro
+problema era $-\frac{10}{7}$.
+(Perch\`e?)
+La soluzione primale ottima \`e $x_2=x_4=x_5 = 0$
+con $x_1=\frac{1}{7}$ e $x_3=\frac{6}{7}$.
+La soluzione duale ottima \`e $y_1 = y_3 = 0$
+con $y_2=-\frac{45}{7}$, $y_4=-\frac{2}{7}$ e $y_5=-\frac{4}{7}$
+ed \`e anch'essa espressa nel tableau.\\
+
+Di fatto \`e persino possibile ricavare
+il tableau del problema duale
+dal tableau del problema primale.
+
+\[
+   \begin{array}{c}
+   \mbox{\sc Tableau Primale}\\ 
+   \begin{array}{rrrrr}
+   &	 & x_4  & x_2 & x_5  \\
+   z  &  -\frac{10}{7} &  \frac{2}{7} & \frac{45}{7}  & \frac{4}{7} \\        
+   x_1 &  \frac{1}{7} &  -\frac{3}{7} & -\frac{8}{7}   &  \frac{1}{7} \\
+   x_3 & \frac{6}{7} &  -\frac{4}{7}  &  -\frac{6}{7}  &  -\frac{1}{7} \\
+   \end{array}
+   \end{array}
+\hfill
+\hspace{1cm}
+{\Huge \Longleftrightarrow}
+\hfill
+\hspace{1.2cm}
+   \begin{array}{c}
+   \mbox{\sc Tableau Duale}\\ 
+   \begin{array}{rrrr}
+        & & y_1  & y_3  \\
+       z  &  \frac{10}{7} & -\frac{1}{7}  & -\frac{6}{7} \\         
+      y_4 &  -\frac{2}{7} & \frac{3}{7}  & \frac{4}{7} \\
+      y_2 &  -\frac{45}{7} & \frac{8}{7}  & \frac{6}{7}\\
+      y_5 &   -\frac{4}{7} & -\frac{1}{7}  & \frac{1}{7} \\
+   \end{array}
+   \end{array}
+\]
+
+Dove la variabile duale $y_4$ corrisponde alla variabile
+di slack $x_4$ e cio\`e \`e il moltiplicatore del primo vincolo.
+La variabile duale $y_1$ corrisponde alla variabile
+primale $x_1$ che \`e il moltiplicatore del primo vincolo duale,
+ossia $y_1$ \`e la variabile di surplus nel primo vincolo duale. 
+
+\begin{Dom}
+   Quale \'e la regola per passare dal tableau del primale
+   al tableau del duale?
+\end{Dom}
+
+\begin{Ese}
+   Verificare che l'ultimo tableau proposto
+   \`e il tableau per il problema duale all'ottimo.
+\end{Ese}
+
+\begin{Dom}
+   Nell'ultimo tableau il prodotto 
+   $x_i\cdot y_i$ \`e nullo
+   per ogni $i$. Sai darne una ragione semplice? 
+   Questa propriet\`a vale solo per l'ultimo tableau?
+\end{Dom}
+
+Qualora si debba massimizzare la funzione obiettivo
+allora seguiamo la stessa procedura,
+solo che ora miriamo ad ottenere valori non positivi nella prima riga.
+Ad esempio:
+\[
+   \begin{array}{l}
+        \max \mbox{\ }2x_1 + 7x_2 -2x_3\\
+        \left\{
+        \begin{array}{l}
+        \begin{array}{rrrr}
+             x_1 \;+&  2x_2 \;+&  x_3 \;\leq &   1 \\
+           -4x_1 \;+& -2x_2 \;+& 3x_3 \;\leq &   2 \\
+        \end{array} \\
+        x_1, x_2, x_3  \geq 0    
+        \end{array}
+        \right.
+   \end{array}
+\]
+
+\[
+  	\begin{array}{rrrrr}
+  	&	& x_1  & x_2 & x_3  \\
+  	z  & 0 & 2 &  7   &  -2 \\         
+  	x_4 &  1 &  -1 &  \fbox{-2}   &  -1 \\
+  	x_5 & 2 & 4 & 2 &  -3 \\
+  	\end{array}
+\hfill
+\hspace{1cm}
+{\longrightarrow}
+\hfill
+\hspace{1.2cm}
+  	\begin{array}{rrrrr}
+  	&	& x_1  & x_4 & x_3  \\
+  	z  & \frac{7}{2} & -\frac{3}{2} &  -\frac{7}{2}   &  -\frac{11}{2} \\         
+  	x_2 &  \frac{1}{2} &  -\frac{1}{2} &  -\frac{1}{2}   &  -\frac{1}{2} \\
+  	x_5 & 3 & 3 & \frac{7}{2} &  -4 \\
+  	\end{array}
+\]
+
+Il valore ottimo della funzione obiettivo \`e ora $\frac{7}{2}$.
+La soluzione primale ottima \`e $x_1=x_3= 0$
+con $x_2=\frac{1}{2}$.
+La soluzione duale ottima \`e 
+$y_2 = 0$
+con $y_1 = \frac{3}{2}$.\\
+
+\setlength{\fboxsep}{25pt}
+\shadowbox{
+  \begin{minipage}{12.7cm}
+    \begin{center}
+      \vspace{-1.8mm}
+      LA PROVA DI CONTROLLO
+    \end{center}
+
+    Anche la PL ha la sua prova del nove.
+    Si assegni ad ogni variabile il valore di quella variabile nella
+    soluzione di base originaria.
+    Ad esempio l'ultimo tableau diviene:
+
+	\[
+	\begin{array}{rrrrrr}
+	& &  & (0)  & (1) & (0) \\
+	& &  & \downarrow \;& \downarrow \;& \downarrow \;\\
+	& &  & x_1  & x_4 & x_3  \\
+	(0) \rightarrow & z  & \frac{7}{2} & -\frac{3}{2} & -\frac{7}{2}  & -\frac{11}{2} \\  	
+	(0) \rightarrow & x_2 &  \frac{1}{2} &  -\frac{1}{2}  & -\frac{1}{2}  &  -\frac{1}{2} \\
+	(2) \rightarrow &   x_5 &  3 &  3  &  -1  &  -4 \\
+	\end{array}
+	\]
+
+	Per ogni riga deve valere quanto segue: il valore del coefficiente associato alla riga deve eguagliare la somma di tutti i coefficienti della riga, ognuno moltiplicato per il coefficiente della colonna a cui appartiene.\\
+
+	\noindent
+	{\em Riga 1:} $(0) = \frac{7}{2}   -\frac{3}{2}(0)  -\frac{7}{2}(1)  -\frac{11}{2}(0)$ \\
+	{\em Riga 2:} $ (0) = \frac{1}{2}  -\frac{1}{2}(0)  -\frac{1}{2}(1)  -\frac{1}{2}(0)$ \\
+	{\em Riga 3:} $ (2) = 3  +3(0)  -1(1)  -4(0)$ \\	
+
+  Queste relazioni valgono per ogni tableau,
+  non necessariamente ottimale.
+  
+  Per maggiori dettagli ed approfondimenti relativi alla prova del nove della PL, si consulti il documento dedicato.
+
+  \end{minipage}
+}
+\setlength{\fboxsep}{3pt}
+
+
+\vspace{1cm}
+
+\bigskip
+
+{\large \bf Il tableau ed il metodo del simplesso duale}\\
+
+
+Consideriamo un problema in forma standard
+e si assuma per fissare le idee che esso sia
+un problema di massimizzazione.
+Si assuma inoltre che tutti i coefficienti della funzione obiettivo
+siano non-positivi.
+Pertanto nel primo tableau i coefficienti della prima riga
+sono di gi\`a non-positivi, come li vorremmo nell'ultimo tableau.
+Un tale tableau \`e detto {\em duale ammissibile}.
+Se poi tutti i coefficienti nella prima colonna sono
+non-negativi allora la soluzione di base corrente
+\`e ammissibile ed il problema \`e gi\`a risolto.
+Altrimenti si applica il metodo del simplesso
+duale.
+Una caratteristica interessante del metodo del
+simplesso duale sul tableau \`e che l'operazione di
+pivot si esplica esattamente come la regola di pivot
+per il simplesso primale.
+L'unica differenza operativa tra i due metodi
+st\`a nella scelta dell'elemento di pivot
+che nel caso del simplesso duale segue
+la stessa filosofia gi\`a richiamata
+per il simplesso primale.
+
+\begin{Dom}
+   Come sceglieresti l'elemento di pivot direttamente dal tableau?
+\end{Dom}
+{\em Possibile Risposta: \/}
+Come riga di pivot si sceglie
+una qualsiasi riga $\bar{\imath}$
+avente il primo elemento $b_{\bar{\imath}}$
+negativo (magari quello maggiormente negativo)
+dacch\`e si mira ad ottenere anche l'ammissibilit\`a primale
+(e quidi l'ottimalit\`a).\\
+
+La scelta della colonna di pivot si effettua
+considerando tutti i $-a_{\bar{\imath},j}$ positivi.
+Tra questi, quello che minimizza il rapporto 
+$|c_j/a_{\bar{\imath},j}|$,
+\`e l'elemento di pivot.\\ 
+
+\begin{Ese}
+   Sapresti proporre ora una seconda regola per
+   la scelta dell'elemento di pivot nel tableau?
+\end{Ese}
+
+
+
+Ecco un esempio:
+
+\[
+   \begin{array}{l}
+        \max \mbox{\ }-x_1 - 2x_2 \\
+        \left\{
+        \begin{array}{l}
+        \begin{array}{rrrr}
+             -x_1 \;+&  4x_2 \;\leq &  -2 \\
+            -2x_1 \;+&  2x_2 \;\leq &  -7 \\
+             -x_1 \;-&  3x_2 \;\leq &   2 \\
+        \end{array} \\
+        x_1, x_2  \geq 0    
+        \end{array}
+        \right.
+   \end{array}
+\hfill
+\hspace{0.4cm}
+   \begin{array}{rrrrr}
+          &    & x_1  & x_2  \\
+       z  & 0 &  -1  & -2 \\          
+      x_3 & -2 &  1  & -4 \\
+      x_4 & -7  & \fbox{$2$}  & -2  \\
+      x_5 & 2 &  1  & 3 \\
+   \end{array}
+\hfill
+\hspace{0.2cm}
+{\longrightarrow}
+\hfill
+\hspace{0.2cm}
+   \begin{array}{rrrrr}
+          &				& x_4  & x_2  \\
+       z  & -\frac{7}{2} & -\frac{1}{2}  & -3 \\          
+      x_3 & \frac{3}{2} &  \frac{1}{2}  & -3 \\
+      x_1 & \frac{7}{2} & \frac{1}{2}  & 1 \\
+      x_5 & \frac{11}{2} & \frac{1}{2}  & 4 \\
+   \end{array}
+\]
+
+\begin{Not}
+   Il metodo del simplesso duale corrisponde
+   a risolvere il problema duale attraverso
+   il metodo del simplesso.\\
+   Il simplesso duale conviene quando
+   l'origine non \`e primale ammissibile 
+   ma duale ammissibile oppure quando nel problema di PL
+   primale il numero di vincoli supera il numero di incognite.
+\end{Not}
+
+\bigskip
+
+{\large \bf Come gestire i vincoli sulle singole variabili}\\
+
+Se invece di avere $x_j \geq 0$ si ha $x_j \geq l_j$
+con $l_j\neq 0$ allora ci si avvale della sostituzione:
+$x'_j = x_j - l_j$.
+Se poi una variabile \`e limitata verso il basso
+invece che verso l'alto, 
+ossia $x_j \leq u_j$,
+ma $x_j \geq 0$ non \`e richiesto,
+allora si sostituisce 
+$x'_j = u_j - x_j$.\\ 
+
+Qualora invece una variabile non-negativa
+sia limitata verso il basso,
+tale condizione pu\`o essere considerata
+come uno dei vincoli del problema.
+Tuttavia, qualora tutte le variabili siano limitate
+(ed in molti casi un limite ovvio \`e facilmente prodotto),
+allora la situazione pu\`o essere girata a nostro vantaggio
+considerando sia la variabile $x_j$ che
+la variabile $x'_j = u_j - x_j$
+e decidendo di adottare per la scrittura
+del primo tableau quella delle due che
+conduce ad un tableau duale ammissibile.
+Si procede quindi con il metodo del simplesso duale.
+Dobbiamo ovviamente garantire $0\leq x_j,x'_j \leq u_j$.
+Attraverso le varie fasi del simplesso duale
+l'ammissibilit\`a duale resta garantita,
+e se una delle variabili primali utilizzate per esprimere
+il tableau ($x_j$ o $x'_j$) \`e negativa allora 
+un passo di pivot viene eseguito con l'effetto
+di avvicinarsi all'ammissibilit\`a anche primale.
+Tuttavia pu\`o accadere che una variabile attualmente
+presente nel tableau ecceda il suo limite verso il basso.
+Quando ci\`o succede si rimpiazza la rispettiva riga del tableau:\\
+
+\noindent
+$
+\begin{array}{llrrrrl}
+ &x'_j \mbox{ (o $x_j$) \hspace{0.3cm} } &
+        b_j & -a_{j,1} & -a_{j,2} & \ldots & -a_{j,n}\\ 
+\mbox{con la riga: \hspace{3cm}}\\
+ &x_j \mbox{ (o $x'_j$) \hspace{0.3cm} } &
+        u_j - b_j & a_{j,1} & a_{j,2} & \ldots & a_{j,n}\\ 
+\end{array}
+$ \\
+
+e proseguendo.  Ad esempio:
+
+\[
+   \begin{array}{l}
+        \max \mbox{\ }3x_1 + 4x_2 \\
+        \left\{
+        \begin{array}{l}
+        \begin{array}{rrrr}
+             x_1 \;+&  6x_2 \;\leq &   3 \\
+        \end{array} \\
+        0 \leq x_1, x_2  \leq 5    
+        \end{array}
+        \right.
+   \end{array}
+\]
+
+Introdotte le variabili
+$x'_1 = 5 - x_1$ ed $x'_2 = 5 - x_2$
+si sceglie di utilizzare nel tableau
+proprio $x'_1$ ed $x'_2$ dacch\`e
+i coefficienti della funzione obiettivo erano
+entrambi positivi (e quindi?).
+
+\[
+   \begin{array}{l}
+        \max \mbox{\ } 35 - 3x'_1 - 4x'_2 \\
+        \left\{
+        \begin{array}{l}
+        \begin{array}{rrrr}
+             -x'_1 \;-&  6x'_2 \;\leq & -32 \\
+        \end{array} \\
+        0 \leq x'_1, x'_2  \leq 5    
+        \end{array}
+        \right.
+   \end{array}
+\]
+
+La sequenza dei tableau \`e quindi:
+
+\[
+   \begin{array}{rrrr}
+         & & x'_1  & x'_2 \\
+       z  &  35 &  -3  &  -4 \\         
+      x_3 & -32  & 1 &  \fbox{$6$}  \\
+   \end{array}
+\hfill
+\hspace{1cm}
+{\longrightarrow}
+\hfill
+\hspace{1.2cm}
+   \begin{array}{rrrr}
+         & & x'_1  & x_3 \\
+       z   & \frac{41}{3} &  -\frac{7}{3} & -\frac{2}{3}  \\         
+      x'_2 & \frac{16}{3} & -\frac{1}{6} & \frac{1}{6}  \\
+   \end{array}
+\]
+
+Ora $\frac{16}{3} > 5$ e pertanto la seconda riga del
+tableau viene sostituita introducendo $x_2$:
+
+\[
+   \begin{array}{rrrr}
+           & & x'_1  & x_3 \\
+       z   & \frac{41}{3} &  -\frac{7}{3} & -\frac{2}{3}  \\      
+      x'_2 & -\frac{1}{3} & \fbox{$\frac{1}{6}$} & -\frac{1}{6}  \\
+   \end{array}
+\hfill
+\hspace{1cm}
+{\longrightarrow}
+\hfill
+\hspace{1.2cm}
+   \begin{array}{rrrr}
+           & & x_2  & x_3 \\
+       z   & 9 &  -14 & -3  \\           
+      x'_1 & 2 & 6 & 1  \\
+   \end{array}
+\]
+
+Soluzione ottima: $x_1 = 3$ ed $x_2 = 0$
+con funzione obiettivo $9$.
+
+
+
+\bigskip
+
+{\large \bf Analisi di Sensitivit\`a}\\
+
+Supponiamo di massimizzare una funzione obiettivo
+che rappresenti un profitto o qualche altra forma
+di beneficio.
+I vincoli descriveranno limitazioni
+in materie prime o disponibilit\`a.
+Allora i valori delle variabili duali
+esprimeranno il massimo ``prezzo''
+che saremmo disposti a pagare per incrementare
+di un'unit\`a la disponibilit\`a cui la variabile
+duale si riferisce.
+(Da qui il nome di ``prezzo ombra'' o ``valore marginale'').
+Ricordiamo che tuttavia il significato di un prezzo
+ombra \`e strettamente locale e che in generale
+non sar\`a conveniente continuare a pagare sulla
+base del prezzo ombra per un incremento comunque grande
+di disponibilit\`a.
+Ci chiediamo ora fino a dove il prezzo ombra
+\'e significativo
+ossia quale sia il massimo incremento 
+di una certa facilit\`a
+che ha senso promuovere pagando il prezzo ombra.
+La risposta pu\`o essere prodotta agevolmente
+con riferimento al tableau duale.\\
+
+Si consideri ad esempio di voler massimizzare il seguente profitto:
+
+\[
+   \begin{array}{l}
+        \max \mbox{\ }2x_1 + 6x_2 +3x_3\\
+        \left\{
+        \begin{array}{l}
+        \begin{array}{rrrr}
+             x_1 \;+&  2x_2 \;+& 2x_3 \;\leq &   5 \\
+            2x_1 \;+&   x_2 \;+& 3x_3 \;\leq &   6 \\
+        \end{array} \\
+        x_1, x_2, x_3  \geq 0    
+        \end{array}
+        \right.
+   \end{array}
+\]
+
+dove $x_1, x_2$ ed $x_3$
+esprimono dei livelli non-negativi di attivit\`a,
+mentre i coefficienti di destra nei vincoli
+impongono limiti su determinate disponibilit\`a.
+Il tableau associato alla soluzione di base ottimale \'e il seguente.
+
+\[
+   \begin{array}{rrrrr}
+          & & x_1  & x_2 & x_3  \\
+       z  & 0 & 2  & 6 &  3 \\          
+      x_4 &  5 &  -1  &  \fbox{$-2$} &  -2 \\
+      x_5 &  6 &  -2  &  -1 &  -3 \\
+   \end{array}
+\hfill
+\hspace{1cm}
+{\longrightarrow}
+\hfill
+\hspace{1.2cm}
+   \begin{array}{rrrrr}
+          & & x_1  & x_4 & x_3  \\
+       z  &          15  &           -1  &  -3  & -3 \\          
+      x_2 & \frac{5}{2} &  -\frac{1}{2} &  -\frac{1}{2}  & -1 \\
+      x_5 & \frac{7}{2} & -\frac{3}{2} &  \frac{1}{2}  & -2 \\
+   \end{array}
+\]
+
+Pertanto saremmo disposti a pagare (non certo pi\`u di) $1$
+per incrementare di un'unit\`a la disponibilit\`a
+nel primo vincolo.
+Ma {\em quanto} siamo disposti a comperare?
+Si consideri il duale dell'ultimo tableau:
+
+\[
+   \begin{array}{rrrr}
+          & & y_2  & y_5  \\
+       z  &  -15 & -\frac{5}{2} & -\frac{7}{2} \\         
+      y_1 &  1 & \frac{1}{2} & \frac{3}{2}  \\
+      y_4 &  3 &  \frac{1}{2} & -\frac{1}{2} \\
+      y_3 &  3 &  1 &  2 \\
+   \end{array}
+\]
+
+Assumiamo di incrementare di $D$ 
+la disponibilit\`a nel primo vincolo.
+Il vantaggio nel considerare il duale \'e
+che l'unica riga ad essere influenzata da questa
+modifica nel problema \`e la prima.
+La nuova riga pu\`o essere prodotta 
+attraverso opportune sostituzioni o 
+avvalendosi della prova del nove ``per colonne'' della PL.\\
+
+
+\[
+   \begin{array}{rrrrr}
+       &  & (0) & (0)  & (6) \\
+       &  & \downarrow & \downarrow \;& \downarrow \;\\
+       &  &  & y_2  & y_5  \\
+       & z  &  \alpha_1 & \alpha_2 & \alpha_3 \\     
+    (0) \rightarrow & y_1 &  1 & \frac{1}{2} & \frac{3}{2}  \\
+    (5+D) \rightarrow & y_4 &  3 &  \frac{1}{2} & -\frac{1}{2} \\
+    (0) \rightarrow & y_3 &  3 &  1 &  2 \\
+   \end{array}
+\]
+
+  Ricordiamo che per ogni colonna deve valere quanto segue: il valore del coefficiente associato alla colonna deve eguagliare la somma di tutti i coefficienti della colonna, ognuno moltiplicato per il coefficiente della riga a cui appartiene cambiato di segno. \\
+
+  \noindent
+  {\em Colonna 1:} $(0)=-\alpha_1+1(-0)-3(5+D)+3(-0) \quad \Longrightarrow \quad \alpha_1 = -15-3D$\\
+  {\em Colonna 2:} $(0)=-\alpha_2+\frac{1}{2}(-0)-\frac{1}{2}(5+D)+1(-0) \quad \Longrightarrow \quad \alpha_2 = -\frac{5+D}{2}$\\
+  {\em Colonna 3:} $(6)=-\alpha_3+\frac{3}{2}(-0)+\frac{1}{2}(5+D)+2(-0) \quad \Longrightarrow \quad \alpha_3 = \frac{-7+D}{2}$\\
+
+Pertanto la riga prodotta \`e:
+\[
+   \begin{array}{lll}
+      -15-3D & -\frac{5+D}{2} & \frac{-7+D}{2} \\
+   \end{array}
+\]
+
+Pertanto il tableau resta ottimo fintanto ch\`e
+$D$ non supera $7$.
+Concludendo $7$ \`e il massimo incremento di diponibilit\`a
+nel primo vincolo che siamo disposti ad acquistare
+pagando $1$ per ogni unit\`a di incremento.
+Per determinare il prezzo 
+che siamo disposti a pagare per incrementi superiori
+(il nuovo prezzo ombra)
+dobbiamo eseguire un nuovo pivot.
+
+
+\end{document}

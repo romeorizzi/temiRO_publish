@@ -1,0 +1,501 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  23 SEP 2017 14:34
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**tableau_vanderbei.tex
+(./tableau_vanderbei.tex
+LaTeX2e <2016/02/01>
+Babel <3.9q> and hyphenation patterns for 4 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2016/02/24 3.9q The Babel package
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel-italian/italian.ldf
+Language: italian 2015/03/26 v1.3n Italian support from the babel system
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2016/02/24 3.9q Babel common definitions
+\babel@savecnt=\count87
+\U@D=\dimen103
+)
+\it@lettering=\count88
+\it@doublequoteactive=\count89
+\it@ISOcompliance=\count90
+))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count91
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2016/03/03 v2.15a AMS math features
+\@mathmargin=\skip43
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks14
+\ex@=\dimen104
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen105
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count92
+LaTeX Info: Redefining \frac on input line 199.
+\uproot@=\count93
+\leftroot@=\count94
+LaTeX Info: Redefining \overline on input line 297.
+\classnum@=\count95
+\DOTSCASE@=\count96
+LaTeX Info: Redefining \ldots on input line 394.
+LaTeX Info: Redefining \dots on input line 397.
+LaTeX Info: Redefining \cdots on input line 518.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen106
+LaTeX Font Info:    Redeclaring font encoding OML on input line 630.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
+\macc@depth=\count97
+\c@MaxMatrixCols=\count98
+\dotsspace@=\muskip10
+\c@parentequation=\count99
+\dspbrk@lvl=\count100
+\tag@help=\toks15
+\row@=\count101
+\column@=\count102
+\maxfields@=\count103
+\andhelp@=\toks16
+\eqnshift@=\dimen107
+\alignsep@=\dimen108
+\tagshift@=\dimen109
+\tagwidth@=\dimen110
+\totwidth@=\dimen111
+\lineht@=\dimen112
+\@envbody=\toks17
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks18
+LaTeX Info: Redefining \[ on input line 2735.
+LaTeX Info: Redefining \] on input line 2736.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count104
+)
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen113
+\extrarowheight=\dimen114
+\NC@list=\toks19
+\extratabsurround=\skip46
+\backup@length=\skip47
+)
+\everycr=\toks20
+\minrowclearance=\skip48
+)
+\rownum=\count105
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks21
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2016/01/03 v1.0q Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 95.
+)
+\Gin@req@height=\dimen115
+\Gin@req@width=\dimen116
+)
+\epsfxsize=\dimen117
+\epsfysize=\dimen118
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fancybox/fancybox.sty
+Package: fancybox 2010/05/15 1.4
+
+Style option: `fancybox' v1.4 <2010/05/15> (tvz)
+\@fancybox=\box28
+\shadowsize=\dimen119
+\@Sbox=\box29
+\do@VerbBox=\toks22
+\the@fancyput=\toks23
+\this@fancyput=\toks24
+\EndVerbatimTokens=\toks25
+\Verbatim@Outfile=\write3
+\Verbatim@Infile=\read1
+)
+\c@Teo=\count106
+\c@Dom=\count107
+\c@Ese=\count108
+\c@Att=\count109
+\c@Not=\count110
+\c@Que=\count111
+ (./tableau_vanderbei.aux)
+\openout1 = `tableau_vanderbei.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Info: Redefining \it@ocap on input line 39.
+LaTeX Info: Redefining \it@ccap on input line 39.
+
+
+File italian.ldf warning: 
+italian.ldf    With OT1 encoding guillemets are poorly faked
+italian.ldf    Use T1 encoding
+italian.ldf    or specify a font with command \CaporaliFrom
+italian.ldf    See the documentation concerning the babel-italian typesetting 
+italian.ldf    on input line 39.
+
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count112
+\scratchdimen=\dimen120
+\scratchbox=\box30
+\nofMPsegments=\count113
+\nofMParguments=\count114
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count115
+\MPscratchDim=\dimen121
+\MPnumerator=\count116
+\makeMPintoPDFobject=\count117
+\everyMPtoPDFconversion=\toks27
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Underfull \hbox (badness 10000) in paragraph at lines 45--62
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 63--67
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--72
+
+ []
+
+
+LaTeX Font Warning: Command \Huge invalid in math mode on input line 90.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--121
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 122--125
+
+ []
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 130.
+
+
+LaTeX Font Warning: Command \Huge invalid in math mode on input line 140.
+
+
+Overfull \hbox (40.72131pt too wide) detected at line 152
+[]
+ []
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Font Warning: Command \Huge invalid in math mode on input line 186.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 204--206
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 211--217
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 218--222
+
+ []
+
+
+LaTeX Font Warning: Command \Huge invalid in math mode on input line 242.
+
+
+LaTeX Font Warning: Command \Large invalid in math mode on input line 242.
+
+
+LaTeX Font Warning: Command \Huge invalid in math mode on input line 246.
+
+
+LaTeX Font Warning: Command \Huge invalid in math mode on input line 257.
+
+
+LaTeX Font Warning: Command \Large invalid in math mode on input line 257.
+
+
+LaTeX Font Warning: Command \Huge invalid in math mode on input line 272.
+
+
+LaTeX Font Warning: Command \Huge invalid in math mode on input line 303.
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 314--321
+
+ []
+
+
+LaTeX Font Warning: Command \Huge invalid in math mode on input line 338.
+
+
+LaTeX Font Warning: Command \Huge invalid in math mode on input line 364.
+
+
+LaTeX Font Warning: Command \Huge invalid in math mode on input line 389.
+
+
+LaTeX Font Warning: Command \Huge invalid in math mode on input line 414.
+
+
+LaTeX Font Warning: Command \Huge invalid in math mode on input line 445.
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 489--498
+
+ []
+
+
+LaTeX Font Warning: Command \Huge invalid in math mode on input line 515.
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 592--598
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 623--624
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 625--629
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 644--645
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 673--680
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 681--686
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 745--746
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 747--756
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 757--780
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 781--791
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 877--878
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 879--902
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 962--970
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 984--985
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 986--990
+
+ []
+
+[8] (./tableau_vanderbei.aux) ) 
+Here is how much of TeX's memory you used:
+ 3732 strings out of 494942
+ 47170 string characters out of 6180501
+ 151707 words of memory out of 5000000
+ 6968 multiletter control sequences out of 15000+600000
+ 13403 words of font info for 48 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 41i,25n,35p,802b,320s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmti10.pfb>
+Output written on tableau_vanderbei.pdf (8 pages, 253961 bytes).
+PDF statistics:
+ 123 PDF objects out of 1000 (max. 8388607)
+ 89 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

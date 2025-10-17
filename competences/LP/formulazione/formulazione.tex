@@ -1,0 +1,396 @@
+\documentclass[11pt]{article}
+\usepackage[italian]{babel}
+
+
+\textwidth 15.5cm
+\textheight 21.5cm
+\topmargin 0cm
+\evensidemargin 0in
+\oddsidemargin 0in
+
+
+\def\bbbr{{\rm I\!R}}
+\def\bbbm{{\rm I\!M}}
+\def\bbbn{{\rm I\!N}}
+
+\def\sm{\setminus}
+\newcommand {\ol}[1]{\overline{#1}}
+
+\newtheorem{Teo}{Theorem}[section]
+\newtheorem{Con}[Teo]{Conjecture}
+\newtheorem{Que}{Question}
+\newtheorem{Cor}[Teo]{Corollary}
+\newtheorem{Property}[Teo]{Property}
+\newtheorem{Pro}[Teo]{Proposition}
+\newtheorem{Cla}[Teo]{Claim}
+\newtheorem{Lem}[Teo]{Lemma}
+\newtheorem{Obs}[Teo]{Observation}
+
+\pagestyle{empty}
+ 
+\begin{document}
+
+\begin{center}
+   {\LARGE \bf Ma questo non \`e che un semplice problema di PL !!!}
+\end{center}
+
+\medskip
+
+{\Large \bf Formulare i seguenti problemi secondo il modello della PL}\\
+
+
+{\large \bf Problemi matematici per agricoltori}\\
+
+{\sc \bf Problema~1\/:}
+Un contadino dispone di 2 ettari di terreno.
+Il contadino non pu\`o dedicare pi\`u di 5 mesi l'anno
+alla cura dei suoi campi.
+Un ettaro coltivato a Renette Golden gli richiede
+3 mesi di lavoro mentre un ettaro coltivato
+a Canada richiederebbe solamente 2 mesi di lavoro all'anno.
+Tuttavia un ettaro coltivato a Renette Golden frutterebbe
+5 soldi ogni anno contro i 4 soldi ricavabili dallo stesso
+ettaro se coltivato a Canada.
+Dovendo decidere come impiantare il terreno, 
+quale politica consentirebbe al contadino
+di massimizzare il suo guadagno?
+Formulare il problema secondo il modello della PL.
+
+\bigskip
+
+{\sc \bf Problema~2\/:}
+Una fattoria consiste di due lotti di terreno A e B
+rispettivamente di 200 e 400 acri.
+Sei tipi di cereali, numerati da 1 a 6,
+possono esservi coltivati.
+Per ogni quintale di cereale il profitto \`e dato dalla
+seguente tabella:
+
+\begin{table}[!htb]
+%\hspace*{-1.5cm}
+%\begin{minipage}[t]{15cm}
+%\begin{footnotesize}
+\begin{tabular}{|l|cccccc|} \hline
+   cereale    &  1 &  2 &  3 &  4 &   5 &  6 \\
+ \hline
+   profitto/q & 48 & 62 & 28 & 36 & 122 & 94 \\ 
+\hline
+
+\end{tabular}
+%\end{footnotesize}
+%\end{minipage}
+%\caption{}
+%\label{}
+\end{table}
+
+Ogni quintale di cereale necessita
+di una certa area (in acri) e di una certa
+quantit\`a d'acqua (in  mc) secondo la seguente tabella:
+
+\begin{table}[!htb]
+%\hspace*{-1.5cm}
+%\begin{minipage}[t]{15cm}
+%\begin{footnotesize}
+\begin{tabular}{|l|cccccc|} \hline
+   cereale            &    1 &     2 &     3 &     4 &    5 &     6 \\
+ \hline
+   area su A (acri/q) & 0.02 &  0.03 &  0.02 & 0.016 & 0.05 &  0.04 \\ 
+   area su B (acri/q) & 0.02 & 0.034 & 0.024 &  0.02 & 0.06 & 0.034 \\ 
+   acqua       (mc/q) &  120 &   160 &   100 &   140 &  215 &   180 \\ 
+\hline
+
+\end{tabular}
+%\end{footnotesize}
+%\end{minipage}
+%\caption{}
+%\label{}
+\end{table}
+
+
+Il volume totale di acqua disponibile
+\`e di 400000 mc.
+Si vuole massimizzare il profitto.
+Formulare il problema secondo il modello della PL.\\
+
+Il secondo problema \'e tratto dal Capitolo~3
+del libro ``Elementi di Programmazione Matematica'' 
+di F.~Maffioli.\\
+
+\bigskip
+
+
+{\large \bf Il Problema della Dieta}\\
+
+{\sc \bf Problema~3\/:}
+Per ben alimentare un certo tipo di animale
+\`e necessario fornirgli 4 sostanze base:
+A, B, C e D.
+La quantit\`a minima giornaliera che ogni animale richiede
+\'e data da: 0,4 kg di A; 0,6 kg di B; 2 kg di C;
+1,3 kg di D.
+Il foraggio \`e ottenuto mescolando due farine M ed N.\\
+
+1kg di M contiene: 100 gr di A; nulla di B; 100 gr di C; 100 gr di D.\\
+\indent
+1kg di N contiene: nulla di A; 100 gr di B; 200 gr di C; 100 gr di D.\\
+
+Con 1 ECU possiamo comperare 4 kg di M o 8 Kg di N.
+Formulare il problema di minimizzare i costi
+secondo il modello della PL
+e risolverlo per via geometrica e con il metodo del simplesso.\\
+
+Tratto dal Capitolo~3
+del libro ``Elementi di Programmazione Matematica'' 
+di F.~Maffioli.\\
+
+\bigskip
+
+
+{\large \bf Il Problema del Trasporto}\\
+
+{\sc \bf Problema~4\/:}
+Una ferriera possiede due miniere e tre impianti
+per la produzione di acciaio.
+Gli impianti richiedono rispettivamente 70, 140 e 100
+tonnellate di minerale,
+mentre le miniere producono nello stesso periodo
+rispettivamente 100 e 200 tonnellate di minerale.
+La tabella seguente riporta i costi di trasporto
+dalle miniere agli impianti in lire/tonnellate.
+
+\begin{center}
+%\hspace*{-1.5cm}
+%\begin{minipage}[t]{15cm}
+%\begin{footnotesize}
+\begin{tabular}{|c|c|c|c|} \hline
+   & \multicolumn{3}{|c|}{all'impianto} \\
+\hline
+   dalla miniera & 1 & 2 & 3 \\
+\hline
+   1 & 100 & 160 & 250 \\
+   2 & 150 & 300 & 200 \\ 
+\hline
+
+\end{tabular}
+%\end{footnotesize}
+%\end{minipage}
+%\caption{}
+%\label{}
+\end{center}
+
+Formulare il problema di minimizzare
+il costo di trasporto
+secondo il modello della PL.\\
+
+Tratto dal Capitolo~3
+del libro ``Elementi di Programmazione Matematica'' 
+di F.~Maffioli.\\
+
+\bigskip
+
+
+{\large \bf Interpolazione lineare di dati sperimentali}\\
+
+{\sc \bf Problema~5\/:}
+Di una grandezza $y$ dipendente da una variabile $x$
+si sono effettuate 6 misure riportate come coppie $(x,y)$
+nell'elenco seguente:
+$(1,16)$ $(2,18)$ $(3,12)$ $(4,7)$ $(5,6)$ $(6,6)$.
+Si vuole determinare la retta del piano cartesiano
+che ``meglio'' interpola le sei misure
+nel senso di minimizzare il massimo scarto 
+tra valore misurato e valore della retta.
+Modellare come un problema di programmazione lineare.\\  
+
+Pi\`u in generale,
+nell'attivit\`a sperimentale
+accade di considerare il seguente problema.
+Dato un sistema di equazioni
+\[
+   \sum_{j=1}^n a_{ij} = b_i \mbox{\hspace{1cm}} i = 1, \ldots, m
+\]
+
+con $m > n$,
+trovare la ennupla di numeri $\bar{x}_1, \ldots, \bar{x}_n$
+che ne costituisce la ``miglior'' approssimazione.
+Tale concetto pu\`o precisarsi meglio definendo con
+\[
+   \epsilon_i = \left| \sum_{j=1}^n a_{ij} - b_i\right|
+\]
+ 
+l'{\em errore} con cui l'ennupla data soddisfa
+alla $i$-esima equazione, $i = 1, \ldots, m$.
+Criteri usati sono quelli dell'errore peggiore ($\max_i e_i$),
+dell'errore medio ($\sum_{i=1}^m e_i$)
+o dell'errore quadratico medio ($\sum_{i=1}^m {e_i}^2$).
+Quest'ultimo caso non pu\'o essere inquadrato come un
+problema di PL.
+Mostrare come gli altri due casi possano
+essere ricondotti al modello della PL.\\
+
+
+Tratto dal Capitolo~3
+del libro ``Elementi di Programmazione Matematica'' 
+di F.~Maffioli.\\
+
+\bigskip
+
+{\large \bf Gestione di Produzione}\\
+
+{\sc \bf Problema~6\/:}
+Il gestore di una raffineria dispone di 10 milioni
+di barili di greggio di tipo A
+e di 6 milioni di greggio di tipo B.
+La raffineria dispone di tre diversi impianti
+per produrre sia nafta per riscaldamento (profitto 3 kL/barile)
+sia benzina (5 kL/barile)
+con le caratteristiche di rendimento (in barili)
+riportate in figura:
+
+\begin{table}[!htb]
+%\hspace*{-1.5cm}
+%\begin{minipage}[t]{15cm}
+%\begin{footnotesize}
+\begin{tabular}{|c|c|c|c|c|} \hline
+   & \multicolumn{2}{|c|}{Input} & \multicolumn{2}{|c|}{Output} \\
+\hline
+   Impianto & A & B & Benzina & Nafta \\
+\hline
+   1 & 3 & 5 & 4 & 3 \\
+   2 & 1 & 1 & 1 & 1 \\ 
+   3 & 5 & 3 & 3 & 4 \\ 
+\hline
+
+\end{tabular}
+%\end{footnotesize}
+%\end{minipage}
+%\caption{}
+%\label{}
+\end{table}
+
+Formulare il problema di massimizzare il profitto
+secondo il modello della PL.\\
+
+Tratto dal Capitolo~3
+del libro ``Elementi di Programmazione Matematica'' 
+di F.~Maffioli.\\
+
+\bigskip
+
+
+{\sc \bf Problema~7\/:}
+La GELAR produce pacchi di patatine surgelate,
+sia a bastoncino (A),
+che in pezzi pi\`u piccoli (B)
+(per le cosidette patate alla svizzera),
+e di fiocchi (C) (non surgelati) per il pur\`e.
+La compagnia acquista patate da due produttori (p1 e p2)
+con rese differenti,
+riportate nella seguente tabella
+(l'avanzo del 30% per entrambi i produttori
+\`e lo scarto non recuperabile).
+
+%\begin{table}[!htb]
+%\hspace*{-1.5cm}
+%\begin{minipage}[t]{15cm}
+%\begin{footnotesize}
+\begin{center}
+\begin{tabular}{|c|ccc|} \hline
+produttore & A & B & C \\
+\hline
+   p1 & 20\% & 20\% & 30\% \\
+   p2 & 30\% & 10\% & 30\% \\ 
+\hline
+
+\end{tabular}
+\end{center}
+%\end{footnotesize}
+%\end{minipage}
+%\caption{}
+%\label{}
+%\end{table}
+
+Il profitto della GELAR \`e di 5 lire
+per etto di patate provenienti dal produttore 1
+e di 6 lire per etto per quelle provenienti dal produttore 2.
+Ci sono poi delle limitazioni alla quantit\`a di ciascun
+tipo di prodotto: 6 tonnellate di A, 4 di B e 8 di C.
+Formulare il problema di massimizzare il profitto
+secondo il modello della PL
+e risolverlo per via geometrica e con il metodo del simplesso.\\
+
+Tratto dal Capitolo~3
+del libro ``Elementi di Programmazione Matematica'' 
+di F.~Maffioli.\\
+
+\bigskip
+
+{\large \bf Gestione di Personale}\\
+
+{\sc \bf Problema~8\/:}
+Un'impresa per la produzione di beni di consumo
+deve essere gestita in modo da tenere conto delle
+fluttuazioni della domanda di tali beni su un periodo
+standard di 6 mesi (gennaio -- giugno e luglio -- dicembre).
+I mezzi per adattare l'azienda
+a tali fluttuazioni sono:
+\begin{itemize}
+   \item[1.] cambiare la quantit\`a di forza lavoro assumendo
+         o licenziando operai;
+   \item[2.] coprire le punte della domanda con lavoro straordinario;
+   \item[3.] immagazzinare merce in vista di richieste future.
+\end{itemize}
+
+Ognuna di queste strategie ha le sue limitazioni.
+La strategia (1) \`e limitata ad un massimo di 5 operai al mese
+(sia in pi\`u che in meno) con un sovrapprezzo
+di 500 kL per una nuova assunzione e di 700 kL per ogni licenziamento.
+La strategia (2) deve tener conto che ogni operaio pu\`o al massimo
+fornire in pi\`u 6 unit\`a al mese col lavoro straordinario
+mentre ne produce 20 regolarmente e che tale prestazione
+graver\`a per 30 kL in pi\`u per ogni unit\`a di merce prodotta.
+Ci sono attualmente (inizio semestre)
+40 operai ed il magazzino \`e vuoto:
+di fatto la politica a lungo
+termine dell'azienda richieda che il magazzino sia vuoto
+alla fine di ogni semestre.
+Le fluttuazioni delle domande previste nei prossimi
+6 mesi sono riportate in figura.
+
+\begin{center}
+%\begin{table}[!htb]
+%\hspace*{-1.5cm}
+%\begin{minipage}[t]{15cm}
+%\begin{footnotesize}
+\begin{tabular}{||l|cccccc||} \hline \hline
+   mese & 1 & 2 & 3 & 4 & 5 & 6 \\
+\hline
+   unit\`a di merce richiesta & 700 & 600 & 500 & 800 & 900 & 800 \\
+\hline
+\end{tabular}
+%\end{footnotesize}
+%\end{minipage}
+%\caption{}
+%\label{}
+%\end{table}
+\end{center}
+
+Formulare come un problema di PL.\\
+
+Tratto dal Capitolo~3
+del libro ``Elementi di Programmazione Matematica'' 
+di F.~Maffioli.\\
+
+\bigskip
+
+
+Buon Lavoro!
+
+\end{document}
+
+
+
+
+
+
+

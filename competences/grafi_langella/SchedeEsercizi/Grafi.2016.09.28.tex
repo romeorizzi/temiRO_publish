@@ -1,0 +1,184 @@
+\documentclass[12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{latexsym}
+\usepackage{epsfig}
+\usepackage{fancybox}
+\usepackage{rotating}
+\usepackage{graphicx}
+
+\textwidth 15.5cm
+\textheight 22.5cm
+\topmargin 0cm
+\evensidemargin 0in
+\oddsidemargin 0in
+
+
+\def\bbbr{{\rm I\!R}}
+\def\bbbm{{\rm I\!M}}
+\def\bbbn{{\rm I\!N}}
+
+\def\sm{\setminus}
+\newcommand {\ol}[1]{\overline{#1}}
+
+
+
+\def\La{{\cal \Leftarrow}}
+\def\Ra{{\cal \Rightarrow}}
+
+
+\newtheorem{Teo}{Theorem}[section]
+\newtheorem{Con}[Teo]{Conjecture}
+\newtheorem{Que}{Question}
+\newtheorem{Cor}[Teo]{Corollary}
+\newtheorem{Property}[Teo]{Property}
+\newtheorem{Pro}[Teo]{Proposition}
+\newtheorem{Cla}[Teo]{Claim}
+\newtheorem{Lem}[Teo]{Lemma}
+\newtheorem{teo}{Teorema}
+\newtheorem{Obs}[Teo]{Observation}
+\newtheorem{Nota}{Nota dello studente}
+
+\pagestyle{empty}
+ 
+\begin{document}
+\title{\textbf{Scheda esercizi: Grafi\\ Esame del 28/09/2016}}
+\author{}
+\date{}
+\maketitle
+
+{\sc \bf Problema~6\/\ \ (15 punti)\/:}
+
+Si consideri il grafo, con pesi sugli archi,
+riportato in figura.
+
+\begin{figure}[htb]   % h=here; t=top; b=bottom;
+\begin{center}
+  \leavevmode
+  \psfig{figure=input.pdf, height=7.0 true cm}
+\end{center}
+\end{figure}
+
+\begin{itemize}
+   \item[6.1.{\bf (1pt)}] Dire, certificandolo, se il grafo
+                          \`e planare oppure no.
+                          In ogni caso, disegnare il grafo
+                          in modo da minimizzare il numero
+                          di incroci tra archi.
+   \item[6.2.{\bf (1pt)}] Dire, certificandolo, se il grafo
+                          ottenuto da $G$ sostituendo l'arco $hx$ con un arco $qx$
+                          \`e planare oppure no.
+   \item[6.3.{\bf (1+1pt)}] Trovare l'albero dei cammini minimi
+                          dal nodo $s$. Esprimere la famiglia di tali alberi.
+   \item[6.4.{\bf (1pt)}] Trovare un albero ricoprente
+                          di peso minimo.
+   \item[6.5.{\bf (4pt)}] Per ciascuno dei seguenti archi dire, certificandolo, se esso appartenga a (tutte/ a nessuna/ a qualcuna ma non a tutte) le soluzioni ottime: \emph{dk, ax, es}.
+   \item[6.6.{\bf (2pt)}] Trovare tutti gli alberi ricoprenti
+                          di peso minimo.
+                          (Dire quanti sono e specificare con precisione
+                           come generarli).
+   \item[6.7.{\bf (1pt)}] Trovare un massimo flusso dal nodo $s$
+                          al nodo $t$.
+   \item[6.8.{\bf (1pt)}] Certificare l'ottimalit\`a del flusso
+                          massimo dal nodo $s$ al nodo $t$.
+   \item[6.9.{\bf (1+1pt)}] Fornire (con certificato di ottimalit\`a) il flusso
+                          massimo dal nodo $s$ al nodo $q$.
+\end{itemize}
+
+\bigskip
+{\bf risposte.} 
+
+\textbf{(1pt)} Il fatto che $G$ sia planare
+può essere messo in evidenza
+esibendo il planar embedding in figura.
+
+\begin{center}
+\mbox{
+  \psfig{figure=planarity.pdf, height=7.0 true cm}
+}
+\end{center}
+
+Per la ricerca di alberi ricoprenti di peso minimo e di flussi massimi converrà lavorare sul planar embedding. E forse anche per osservare che il grafo modificato non è planare. Il certificato è la suddivisione del $K_{3,3}$ esibita in figura. \textbf{(1pt)}
+
+\begin{center}
+\mbox{
+  \psfig{figure=notplanar.pdf, height=7.0 true cm}
+}
+\end{center}
+
+\begin{Nota}
+Uno degli errori più comuni commessi dagli studenti è quello di sbagliare il certificato di planarità del grafo. Vi propongo un esempio di tale errore: 
+\begin{center}
+\mbox{
+  \psfig{figure=wrongplanarity.pdf, height=7.0 true cm}
+}
+\end{center}
+In questo caso l'errore è stato quello di scegliere dei percorsi, che collegano i nodi \emph{'cerchiati'} a quelli \emph{'quadrettati'}, in modo tale da condividere alcuni nodi (che nella figura sono evidenziati con triangoli viola) tra loro, come per i percorsi che dal nodo \emph{x} portano ai nodi \emph{h} e \emph{d} che condividono i nodi \emph{'triangolati'} in viola \emph{a}, \emph{c}. 
+\end{Nota}
+
+\textbf{(1pt)} Un albero dei cammini minimi dal nodo \emph{s} a tutti gli altri nodi del grafo è rappresentato in figura dagli archi in linea spessa (sia tratteggiata che continua).
+
+\begin{center}
+\mbox{
+  \psfig{figure=path.pdf, height=7.0 true cm}
+}
+\end{center}
+
+\begin{Nota}
+Vi rimando alle note teoriche sui Grafi o comunque a guardare con attenzione il funzionamento dell'algoritmo di Dijkstra.
+\end{Nota}
+
+\textbf{(1pt)}  Ovviamente ogni arco del grafo non contenuto nell?albero dei cammini minimi (ossia ogni arco in linea non spessa) può essere rimosso senza allontanare alcun nodo dal nodo \emph{s}. Inoltre, anche i tre archi in linea spessa ma tratteggiata possono essere rimossi poiché sostituibili con altri archi (sempre in linea tratteggiata). Ci sono quindi $2^{3} = 8$\footnote{tale numero si ottiene elevando 2 ad una potenza pari al numero di archi tratteggiati in figura, in questo particolare caso 3} alberi di cammini minimi dal nodo \emph{s}: sono ottenuti aggiungendo all'albero fornito sopra un qualsiasi sottoinsieme dell'insieme di archi in linea tratteggiata e rimuovendo quegli archi in linea spessa che si trovino ad entrare in nodi dove ora entra un arco in linea tratteggiata. \\
+
+\textbf{(2+1 pt)}  La seguente figura esprime la famiglia degli alberi ricoprenti di peso minimo.
+
+\begin{center}
+\mbox{
+  \psfig{figure=tree.pdf, height=7.0 true cm}
+}
+\end{center}
+
+\begin{Nota}
+Non esiste un unico modo per ottenere tali alberi, quindi vi mostro in breve quello che ho usato io. Ricordandovi che il vostro scopo è quello di toccare tutti i nodi del grafo, il procedimento è il seguente:
+\begin{itemize}
+\item per prima cosa evidenziate tutti gli archi di peso inferiore tra tutti (solitamente hanno peso 1 o 2), nel nostro caso sono gli archi di peso 1.\\
+\item poi si procede con quelli immediatamente più grandi (in questo caso quelli di peso 2); facendo attenzione ai casi di scelta che bisogna tratteggiare, ad esempio un caso di scelta sono gli archi \emph{eb, bd, ed}. Sono una scelta perché dal nodo \emph{e} si può arrivare sia al nodo \emph{b} che al nodo \emph{d} con un arco di peso 2, e analogamente si può arrivare a \emph{d} da \emph{b} con un altro arco di peso 2. \\
+\item e si procede così fino ad esaurimento nodi.
+\end{itemize}
+\end{Nota}
+Ci sono $2 \cdot 3 \cdot 8 = 48$\footnote{tale numero è dato dal prodotto delle scelte} alberi ricoprenti di perso minimo e ciascuno di essi include i $14$ archi in linea spessa e nera, più $2$ qualsiasi dei $3$ archi di peso $2$ in linea spessa e sfumata ($3$ scelte), più $1$ qualsiasi dei $2$ archi di peso $3$ in linea spessa e sfumata ($2$ scelte), più $2$ dei $5$ archi di peso $5$ ed in linea sfumata spessa, come da $8$ possibili scelte che possono essere meglio comprese cancellando tutti gli archi di peso maggiore di $5$ e contraendo tutti gli archi di peso inferiore a $5$ come illustrato nella seguente figura.
+
+\begin{center}
+\mbox{
+  \psfig{figure=tree2.pdf, height=7.0 true cm}
+}
+\end{center}
+
+\textbf{(1pt)} Un albero di peso minimo è il seguente: contiene tutti gli archi in linea nera grossa, più gli archi \emph{be} e \emph{de}, l'arco \emph{zy}, e gli archi \emph{bu} e \emph{vu}.
+ 
+\textbf{(4pt)} L'arco \emph{dk}, appartiene a qualche soluzione ottima poiché di peso minimo $(5)$ nel taglio costituito dagli archi: \emph{ax, ac, fc, dc} e \emph{dk} \textbf{(1pt)}; non appartiene tuttavia a tutte le soluzioni ottime poiché è arco di peso massimo $(5)$ nel ciclo costituito dagli archi: \emph{db, bu, uv, vq, qk, kd} \textbf{(1pt)}. L'arco \emph{ax}, non appartiene ad alcuna soluzione ottima poiché unico arco di peso massimo $(6)$ nel ciclo costituito dagli archi: \emph{ax, xh, hc, ca} \textbf{(1pt)}. L'arco \emph{es}, appartiene a tutte le soluzioni ottime poiché unico arco di peso minimo $(5)$ nel taglio costituito dagli archi: \emph{es, fz} \textbf{(1pt)}.
+
+\begin{Nota}
+Per maggiori spiegazioni su quest'ultimo punto vi rimando alle note teoriche sui Grafi. 
+\end{Nota}
+
+\textbf{(1pt)} La seguente figura esibisce un flusso massimo (non esibisco tutti i passaggi che ho dovuto compiere per ottenerlo) ed un taglio (minimo) che ne dimostra l'ottimalità.
+
+\begin{center}
+\mbox{
+  \psfig{figure=flusso.pdf, height=7.0 true cm}
+}
+\end{center}
+\begin{Nota}
+Fate attenzione che il valore del taglio deve avere lo stesso valore del flusso, cioè la somma del peso degli archi che tagliate deve essere uguale al flusso.
+\end{Nota}
+Il flusso ha valore $14$ e satura l'insieme degli archi (due soli archi) che attraversano la curva sfumata portandosi dal lato di \emph{s} al lato di \emph{t}. Questi $2$ archi costituiscono pertanto un minimo \emph{s,t}-taglio, anch'esso di valore $14$ e che certifica pertanto l'ottimalità del flusso proposto. \textbf{(1pt)} (Sia il flusso che il taglio sarebbero stati più immediati a vedersi e verificarsi nel planar embedding. Puoi provare a rappresentarteli lì).
+\textbf{(1pt)} Il massimo flusso da \emph{s} a \emph{q} a valore $9$ e la stella di \emph{q} è un taglio che ne certifica l'ottimalità. \textbf{(1pt)} A parte questa strozzatura, vi è altrimenti ampio margine nell'inviare flusso da \emph{s} a \emph{q} ed evitiamo quindi di fornire descrizione di una tale soluzione ammissibile di valore $9$ (cosa che ovviamente voi non potete mai fare: se volete totalizzare i rispettivi punti dovete innanzitutto fornirmi le soluzioni/certificati!). Essa può comunque essere facilmente prodotta con ovvie modifiche partendo dal flusso di valore $14$ dato in figura.
+  
+\begin{Nota}
+L'ultimo consiglio che mi sento di darvi è quello di fare quanti più esercizi potete perché alcuni di questi punti vi verranno meglio con la pratica.
+\end{Nota}
+\medskip
+ 
+\end{document}

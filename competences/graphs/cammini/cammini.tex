@@ -1,0 +1,348 @@
+\documentclass[10pt]{article}
+\usepackage[italian]{babel}
+\usepackage{latexsym}
+\usepackage{epsfig}
+\usepackage{fancybox}
+\usepackage{algorithm}
+
+
+\textwidth 15.5cm
+\textheight 21.5cm
+\topmargin 0cm
+\evensidemargin 0in
+\oddsidemargin 0in
+
+
+\def\NP{N\!P}
+\def\bbbr{{\rm I\!R}}
+\def\bbbm{{\rm I\!M}}
+\def\bbbn{{\rm I\!N}}
+
+\def\proof{{{\em Proof:} \/}}
+\def\qed{{$\hfill \Box$\\}}
+
+\def\sm{\setminus}
+\newcommand {\ol}[1]{\overline{#1}}
+\newcommand{\wt}[1]{\widetilde{#1}}
+
+\def\Ord{{\cal O}}
+\def\PP{{\cal P}}
+\def\C{{\cal C}}
+
+\newtheorem{Teo}{Theorem}%[section]
+\newtheorem{Ass}[Teo]{Assunzione}
+\newtheorem{Pro}[Teo]{Proposition}
+\newtheorem{Ese}[Teo]{Esercizio}
+\newtheorem{Fact}[Teo]{Fatto}
+\newtheorem{Rem}[Teo]{Remark}
+\newtheorem{Cor}[Teo]{Corollary}
+\newtheorem{Prop}[Teo]{Propriet\`a}
+\newtheorem{Cla}[Teo]{Claim}
+\newtheorem{Lem}[Teo]{Lemma}
+\newtheorem{Obs}[Teo]{Observation}
+
+\pagestyle{empty}
+ 
+\begin{document}
+
+\begin{center}
+   {\LARGE \bf Cammini Ottimi}
+\end{center}
+
+Problemi che richiedono di trovare il cammino
+di costo minimo fra una o pi\`u coppie di nodi
+di un grafo sono tra i pi\`u importanti nelle applicazioni pratiche.
+Vogliamo qui dare una panoramica introduttiva
+di sapore algoritmico e prettamente combinatorio.\\
+
+\noindent
+{\LARGE \bf Quando il costo di ogni arco \`e positivo}\\
+
+Dato un digrafo pesato $D$ 
+ed un nodo {\em sorgente} $s$ di $D$
+vogliamo trovare per ogni nodo $v\in V(D)\sm \{s\}$
+un cammino che vada da $s$ a $v$ di costo minimo.
+(Il costo di un cammino \`e dato dalla somma dei pesi
+degli archi nel cammino).\\
+
+Incominciamo con alcune facili osservazioni:
+
+\begin{Fact}   \label{riduzione}
+   L' eventuale presenza di archi privi di orientamento
+   (archi non diretti)
+   non costituisce un problema:
+   un arco non orientato $uv$
+   pu\`o semplicemente venir sostituito
+   dalle frecce $\vec{uv}$  e $\vec{vu}$ come illustrato in figura. 
+\end{Fact}
+
+\begin{center}
+  \psfig{figure=reduce.eps, height=4 true cm}
+\end{center}
+
+\begin{Ese}
+   Sapresti esprimere il contenuto di tale
+   osservazione in modo pi\`u rigoroso,
+   magari formulando un lemma
+   ed eventualmente dimostrandolo?
+\end{Ese}
+
+Supponiamo di essere interessati a tutti i
+cammini minimi da $s$ ad ogni altro nodo.
+Potrebbe sembrare che in generale si andranno ad utilizzare
+svariati archi del grafo in esame.
+Invece \`e sempre possibile limitarsi a $|V(D)|-1$ archi:
+
+\begin{Prop}
+   Sia $P_{s,v}$ un cammino minimo da $s$ a $v$
+   e sia $u$ un qualsiasi nodo toccato da $P_{s,v}$.
+   Allora il prefisso di $P_{s,v}$ che porta
+   da $s$ a $u$ \`e un cammino minimo da $s$ a $u$.
+   Possiamo pertanto sempre individuare un`alborescenza dei
+   cammini minimi come illustrato in figura. 
+\end{Prop}
+
+\begin{center}
+  \psfig{figure=albero.eps, height=4 true cm}
+\end{center}
+
+In virt\`u di questa osservazione ci \`e possibile
+ritornare la soluzione ottima in spazio $\Ord(|V(D)|)$.
+L'idea \`e la seguente:
+per ogni nodo $v$ ritorno un padre $\pi(v)$
+ossia il penultimo nodo in un qualche cammino
+ottimo da $s$ a $v$.
+Gli archi del cammino ottimo da $s$ a $v$ sono
+quindi prodotti da una procedura {\sc Path}
+qui sopra espressa in pseudocodice.\\
+
+\floatname{algorithm}{Procedura}
+\begin{algorithm}
+\caption{{\sc Path} $(\pi,v)$}
+\begin{quote}
+\noindent
+1.\hspace{2mm} {\bf while} \ $s\neq v$\\
+2.\hspace{12mm} produci l'arco $\pi(v)v$;\\
+3.\hspace{12mm} $v \leftarrow \pi(v)$;\\
+\end{quote}
+\end{algorithm}
+
+
+   {\Large \bf Pesi Tutti unitari: Breath First Search}\\
+
+Dato un digrafo $D$ ed un nodo {\em sorgente} $s$ di $D$
+vogliamo trovare per ogni nodo $v\in V(D)\sm \{s\}$
+un cammino che vada da $s$ a $v$ utilizzando il minor
+numero possibile di archi.
+Ci stiamo cio\`e restringendo
+al caso di cardinalit\`a,
+quando tutti i pesi sono unitari.\\
+
+In questo caso abbiamo un`algoritmo
+molto efficiente (complessit\`a $\Ord(|E|)$):
+la famigerata Breath First Search (BFS).
+
+
+\floatname{algorithm}{Algoritmo}
+\begin{algorithm}   \index{{BFS}}
+\caption{{\sc BFS} $(D,c)$}
+\begin{quote}
+\noindent
+1.\hspace{2mm} $\lambda(s) \leftarrow 0$; \ $\pi(s) \leftarrow s$;\\
+2.\hspace{2mm} $dist \leftarrow 0$;\\
+3.\hspace{2mm} {\bf repeat}\\
+4.\hspace{8mm} {\bf for each} nodo $v$ non etichettato ed adiacente
+                ad un nodo etichettato con $\lambda = dist$\\
+5.\hspace{14mm} $\lambda(v) \leftarrow dist\;+1$;\\
+6.\hspace{8mm} $dist \leftarrow dist\;+1$;\\  
+7.\hspace{2mm} {\bf until} \ almeno un altro nodo \`e stato etichettato; 
+
+\end{quote}
+\end{algorithm}
+
+\begin{Ese}
+   Dimostrare come a terminazione sia stato
+   trovato il cammino minimo da $s$ ad ogni nodo
+   raggiungibile da $s$.
+\end{Ese}
+
+\begin{Ese}
+    Come implementeresti l'algoritmo per ottenere la complessit\`a
+    $\Ord(|E|)$?
+\end{Ese}
+
+\begin{Ese}
+    L'algoritmo BFS \'e stato descritto utilizzando
+    del cosidetto {\em pseudocodice}.
+    Sapresti cogliere e puntualizzare
+    le differenze fondamentali tra una
+    codifica ed una pseudocodifica?
+\end{Ese}
+
+\vspace{1cm}
+   {\Large \bf Pesi Tutti Positivi: l'algoritmo Dijkstra}\\
+
+Ritorniamo ora ad un caso pi\`u generale: quello pesato.
+Assumeremo tuttavia l'ipotesi semplificatrice che tutti
+i pesi siano non-negativi.\\
+
+Nell'algoritmo che proponiamo le etichette
+che diamo ai nodi non sono sempre permanenti
+ossia ci riserviamo di trovare cammini migliori
+nel proseguio dell'algoritmo.
+Pi\'u precisamente associamo un valore booleano
+$f(v)$ ad ogni nodo.
+Quando $f(v)$ \'e {\em Falso} \'e ancora possibile
+che $\lambda(v)$ diminuisca.
+Quando $f(v)$ \'e {\em Vero} il cammino
+ottimo da $s$ a $v$ \`e gi\`a stato trovato.\\
+
+\floatname{algorithm}{Algoritmo}
+\begin{algorithm}   \index{{Dijkstra}}
+\caption{{\sc Dijkstra} $(D,c)$}
+\begin{quote}
+\noindent
+1.\hspace{2mm} {\bf for each} nodo $v$ di $D$ \ {\bf do}\\
+2.\hspace{8mm} $\lambda(v) \leftarrow \infty$; \ $\pi(v) \leftarrow -1$; \ $f(v) \leftarrow False$;\\
+3.\hspace{2mm} $\lambda(s) \leftarrow 0$; \ $\pi(s) \leftarrow s$; \ $f(s) \leftarrow True$;\\
+4.\hspace{2mm} $\rho \leftarrow s$;\\
+5.\hspace{2mm} {\bf while} $f(t) = Falso$;\\
+6.\hspace{8mm} {\bf for each} freccia $\vec{\rho v}$ di $D$ with $f(v) = Falso$ \ {\bf do}\\
+7.\hspace{16mm} {\bf if} $\lambda(\rho) + c(\vec{\rho v}) < \lambda(v)$ \ {\bf then} \ $\lambda(v) \leftarrow \lambda(\rho) + c(\vec{\rho v})$; \ $\pi(v) \leftarrow \rho$;\\
+8.\hspace{8mm} sia $y$ un nodo tale che $\lambda(v) = \min\{\lambda(x) \: : f(x)= Falso\}$;\\
+9.\hspace{8mm} $f(y) \leftarrow Vero$; \ $\rho \leftarrow y$; 
+\end{quote}
+\end{algorithm}
+
+
+\begin{Ese}
+   Dimostrare come a terminazione sia stato
+   trovato il cammino minimo da $s$ ad ogni nodo
+   raggiungibile da $s$.
+\end{Ese}
+
+\begin{Ese}
+    Sapresti spiegare come mai non esista ancora
+    alcuna implementazione dell'algoritmo Dijkstra
+    con  complessit\`a $\Ord(|E|)$?
+\end{Ese}
+
+Tracciamo il comportamento dell' 
+{\em Algoritmo Dijkstra} nel seguente esempio.
+
+\begin{center}
+\mbox{\psfig{figure=dijkstra.eps, height=5 true cm}}
+\hspace{1cm}
+\begin{tabular}{||c|c|c|c|c|c||}
+\hline
+\hline
+    s & a & b & c & d & t \\
+\hline
+\hline
+%\cornersize{num=1pt}
+  \ovalbox{$0$} & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ \\
+\hline
+  \ovalbox{$0$} & $15$ & $\infty$ & $\infty$ & $9$ & $\infty$ \\
+  \ovalbox{$0$} & $15$ & $\infty$ & $\infty$ & \ovalbox{$9$} & $\infty$ \\
+\hline
+  \ovalbox{$0$} & $13$ & $\infty$ & $11$ & \ovalbox{$9$} & $\infty$ \\
+  \ovalbox{$0$} & $13$ & $\infty$ & \ovalbox{$11$} & \ovalbox{$9$} & $\infty$ \\
+\hline
+  \ovalbox{$0$} & $13$ & $\infty$ & \ovalbox{$11$} & \ovalbox{$9$} & $18$ \\
+  \ovalbox{$0$} & \ovalbox{$13$} & $\infty$ & \ovalbox{$11$} & \ovalbox{$9$} & $18$ \\
+\hline
+  \ovalbox{$0$} & \ovalbox{$13$} & $48$ & \ovalbox{$11$} & \ovalbox{$9$} & $18$ \\
+  \ovalbox{$0$} & \ovalbox{$13$} & $48$ & \ovalbox{$11$} & \ovalbox{$9$} & \ovalbox{$18$} \\
+\hline
+\hline
+\end{tabular}
+
+
+\end{center}
+
+
+\noindent
+{\LARGE \bf Quando non ci sono cicli negativi}\\
+
+Quando siamo in presenza di archi di costo negativo
+il problema si complica notevolmente.
+Tanto \`e vero che se non poniamo restrizione alcuna
+il problema di trovare un cammino {\em semplice}
+(nessun arco ripetuto) ottimo diviene $\NP$-completo
+in quanto contiene come caso particolare il problema del cammino
+amiltoniano.
+Se non richiediamo che il cammino sia semplice allora
+il problema diviene illimitato se e solo se
+siamo in presenza di cicli negativi.
+Si adotta pertanto la seguente:
+
+\begin{Ass}
+   Il digrafo in esame non contiene alcun ciclo
+   negativo (somma dei pesi degli archi negativa).
+\end{Ass}
+
+In virt\`u di tale assunzione 
+risulta poi inessenziale richiedere
+o meno che i cammini siano semplici
+dacch\'e ogni cammino di peso minimo
+eviter\'a di sua sponte di ciclare.\\
+
+Sottolineiamo ora una questione importante:
+la riduzione di cui al Fatto~\ref{riduzione}
+non \`e pi\`u applicabile poich\`e un arco
+non orientato negativo darebbe automaticamente
+luogo ad un ciclo negativo.
+Pertanto ci limiteremo ai soli  digrafi.
+\begin{Ass}
+   Ogni arco del grafo in questione \`e una freccia.
+\end{Ass}
+(In verit\`a il problema di reperire i cammini minimi
+pu\`o essere risolto in tempo polinomiale, seppur con maggiori
+difficolt\`a,
+anche nel contesto di grafi
+ad archi non orientati e senza cicli negativi.
+Per fare ci\`o occorre
+utilizzare tecniche di matching.)\\
+
+Ritornando invece al caso pi\`u semplice dei digrafi
+abbiamo l'algoritmo di Ford la cui complessit\`a \`e $\Ord(mn)$. 
+
+\floatname{algorithm}{Algoritmo}
+\begin{algorithm}   \index{{Ford}}
+\caption{{\sc Ford} $(D,c)$}
+\begin{quote}
+\noindent
+1.\hspace{2mm} {\bf for each} nodo $v$ di $D$ \ {\bf do} \\
+2.\hspace{8mm} $\lambda(v) \leftarrow \infty$; \ $\pi(v) \leftarrow -1$; \\
+3.\hspace{2mm} $\lambda(s) \leftarrow 0$; \ $\pi(s) \leftarrow s$; \\
+4.\hspace{2mm} {\bf for} $i \leftarrow 1$ \ {\bf to} $|V(D)|$ \ {\bf do}\\
+6.\hspace{8mm} {\bf for each} nodo $v$ di $D$ \ {\bf do}\\
+7.\hspace{16mm} $\eta \leftarrow \lambda(\rho) + c(\vec{\rho v}) = \min \{\lambda(u) + c(\vec{u v})\: : u\in V(D)\}$;\\
+8.\hspace{16mm} {\bf if} $\eta < \lambda(v)$ \ {\bf then} \ $\lambda(v) \leftarrow \eta$; \ $\pi(v) \leftarrow \rho$;\\
+
+\end{quote}
+\end{algorithm}
+
+\begin{Ese}
+   Dimostrare come a terminazione sia stato
+   trovato il cammino minimo da $s$ ad ogni nodo
+   raggiungibile da $s$.
+\end{Ese}
+
+{\em Suggerimento:} \/ Si dimostri per induzione che
+a completamento del ciclo a conteggio per $i=k$
+la variabile $\lambda(v)$ esprime il minimo costo di
+un cammino da $s$ a $v$ in al pi\`u $k$ archi.
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+
